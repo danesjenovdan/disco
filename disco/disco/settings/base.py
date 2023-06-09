@@ -16,6 +16,9 @@ import os
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
+# Log to console when debug is off
+from django.utils.log import DEFAULT_LOGGING
+DEFAULT_LOGGING["handlers"]["console"]["filters"] = []
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -25,9 +28,10 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 INSTALLED_APPS = [
     "home",
-    "search",
     "wagtail.contrib.forms",
+    "wagtail.contrib.modeladmin",
     "wagtail.contrib.redirects",
+    "wagtail.contrib.styleguide",
     "wagtail.embeds",
     "wagtail.sites",
     "wagtail.users",
@@ -116,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Europe/Ljubljana"
 
 USE_I18N = True
 
@@ -164,3 +168,5 @@ WAGTAILSEARCH_BACKENDS = {
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 WAGTAILADMIN_BASE_URL = "http://example.com"
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

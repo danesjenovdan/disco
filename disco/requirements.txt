@@ -1,6 +1,6 @@
 anyascii==0.3.2
 asgiref==3.7.2
-backports.zoneinfo==0.2.1
+backports.zoneinfo==0.2.1;python_version<"3.9"
 beautifulsoup4==4.11.2
 certifi==2023.5.7
 charset-normalizer==3.1.0
@@ -20,6 +20,7 @@ idna==3.4
 l18n==2021.3
 openpyxl==3.1.2
 Pillow==9.5.0
+psycopg2==2.9.6
 pytz==2023.3
 requests==2.31.0
 six==1.16.0
