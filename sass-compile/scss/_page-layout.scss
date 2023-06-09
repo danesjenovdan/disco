@@ -1,0 +1,36 @@
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 0;
+
+  & > main {
+    flex: 1 0 0%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.container,
+.container-fluid {
+  @include media-breakpoint-up(lg) {
+    --bs-gutter-x: 48px;
+  }
+}
+
+.bg-grid {
+  background-image: url("/static/img/globe-grid-mobile.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  @include media-breakpoint-up(lg) {
+    background-image: url("/static/img/globe-grid.svg");
+  }
+}
+
+.btn-primary:hover {
+  background-color: $body-bg;
+  color: $primary;
+}

@@ -1,0 +1,91 @@
+.navbar {
+  > .container,
+  > .container-fluid {
+    align-items: stretch;
+  }
+
+  .nav-wrapper {
+    display: flex;
+    align-items: stretch;
+
+    @include media-breakpoint-up(lg) {
+      align-items: center;
+    }
+  }
+
+  .navbar-brand img {
+    width: 56px;
+    height: 54px;
+
+    @include media-breakpoint-up(lg) {
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+  .buttons-wrapper {
+    display: flex;
+    gap: 0.5rem;
+
+    @include media-breakpoint-up(lg) {
+      height: 40px;
+    }
+
+    a.btn {
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      font-size: 20px;
+
+      @include media-breakpoint-up(lg) {
+        padding: 0 16px;
+        font-size: 18px;
+      }
+    }
+
+    .navbar-toggler {
+      padding: 0 10px;
+      border: 1px solid $white;
+      border-radius: 50%;
+
+      .toggler-line {
+        background: $white;
+        width: 32px;
+        height: 1px;
+
+        &:nth-child(1) {
+          transform: translateY(-5px);
+        }
+
+        &:nth-child(2) {
+          transform: translateY(5px);
+        }
+      }
+    }
+  }
+
+  .navbar-nav {
+    gap: 24px;
+    margin-right: 24px;
+
+    .nav-item {
+      .nav-link {
+        padding: 0;
+        font-size: 18px;
+        color: $white;
+
+        @include media-breakpoint-up(lg) {
+          font-size: 20px;
+        }
+
+        @include media-breakpoint-up(xxl) {
+          font-size: 24px;
+        }
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

@@ -1,34 +1,54 @@
 // This file should be included before Bootstrap.
 
+$disco-black: #161616;
+$disco-dark-grey: #333333;
+$disco-grey: #a7a9ac;
+$disco-pink: #ff50de;
+$disco-white: #ffffff;
+
 // Set Bootstrap variables here.
 
-$enable-rounded: false;
+$enable-rfs: false;
 
-// $blue: #3072f6;
-// $indigo:  #6610f2;
-// $purple:  #6f42c1;
-// $pink:    #d63384;
-// $red: #ec5f58;
-// $orange:  #fd7e14;
-// $yellow: #e2fc52;
-// $green:   #198754;
-// $teal:    #20c997;
-// $cyan:    #0dcaf0;
+$black: $disco-black;
+$gray-800: $disco-dark-grey;
+$gray-600: $disco-grey;
+$pink: $disco-pink;
+$white: $disco-white;
 
-// $body-bg: $white;
-// $body-bg-alt: #f1f2f2;
+$primary: $disco-pink;
+$secondary: $gray-600;
+// $success: $green;
+// $info: $cyan;
+// $warning: $yellow;
+// $danger: $red;
+// $light: $gray-100;
+// $dark: $gray-900;
 
-// $font-family-sans-serif: "Inter", sans-serif;
-// $body-color: #252525;
+$body-bg: $disco-black;
 
-// $headings-font-family: "Fredoka One", cursive;
-// $headings-color: #112343;
-// $headings-font-weight: 400;
+$font-family-sans-serif: "TWK Lausanne", sans-serif;
+$headings-font-family: "TWK Lausanne", sans-serif;
+
+$body-color: $disco-grey;
+$font-weight-base: 250;
+
+$headings-color: $disco-grey;
+$headings-font-weight: 250;
+$headings-line-height: 1.1;
+
+$h1-font-size: 40px;
 
 // $link-color: $body-color;
 // $link-decoration: none;
 // $link-shade-percentage: 0%;
 // $link-hover-decoration: underline;
+
+$btn-border-radius: 50rem;
+$input-border-radius: 50rem;
+$form-check-input-border-radius: 50rem;
+
+$grid-gutter-width: 2.5rem;
 
 $spacer: 1rem;
 $spacers: (
@@ -49,8 +69,17 @@ $grid-breakpoints: (
   lg: 992px,
   xl: 1200px,
   xxl: 1400px,
-  xxxl: 1602px,
+  xxxl: 1600px,
 );
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px,
+  xxxl: 1512px,
+) !default;
 
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
