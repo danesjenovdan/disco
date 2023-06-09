@@ -3,8 +3,37 @@
   gap: 2rem;
   padding-bottom: 2rem;
 
+  @include media-breakpoint-up(lg) {
+    gap: 3rem;
+    padding-top: 28px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include media-breakpoint-up(xxl) {
+    gap: 4rem;
+    padding-top: 64px;
+  }
+
+  h1 {
+    @include media-breakpoint-up(lg) {
+      font-size: 56px;
+    }
+
+    @include media-breakpoint-up(xxl) {
+      font-size: 72px;
+    }
+  }
+
   .parking__subscribe {
     font-size: 22px;
+
+    @include media-breakpoint-up(lg) {
+      grid-column: 2;
+    }
+
+    @include media-breakpoint-up(xxl) {
+      font-size: 24px;
+    }
 
     button {
       display: flex;
@@ -13,6 +42,11 @@
       padding: 12px 24px;
       font-size: 20px;
 
+      @include media-breakpoint-up(xxl) {
+        padding: 13px 33px;
+        font-size: 24px;
+      }
+
       svg {
         width: 22px;
       }
@@ -20,10 +54,16 @@
 
     .subscribe-group {
       position: relative;
+      max-width: 596px;
 
       input {
         padding: 17px 132px 17px 24px;
         font-size: 20px;
+
+        @include media-breakpoint-up(xxl) {
+          padding: 17px 132px 17px 32px;
+          font-size: 24px;
+        }
 
         &:not(:focus) {
           border-color: transparent;
@@ -49,6 +89,16 @@
         height: 24px;
         margin-top: 4px;
         margin-left: -32px;
+        background-color: $body-bg;
+        border-color: $white;
+
+        &:checked {
+          --bs-form-check-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle fill='%23fff' cx='12' cy='12' r='10'/></svg>");
+        }
+      }
+
+      .form-check-label {
+        max-width: 440px;
       }
     }
   }
@@ -56,12 +106,29 @@
   .parking__description {
     font-size: 22px;
     line-height: 1.2;
+
+    @include media-breakpoint-up(lg) {
+      margin-top: auto;
+      grid-row: 2 / span 2;
+    }
+
+    @include media-breakpoint-up(xxl) {
+      font-size: 24px;
+    }
   }
 
   .parking__socials {
+    @include media-breakpoint-up(lg) {
+      margin-top: auto;
+    }
+
     .socials {
       display: flex;
       gap: 0.5rem;
+
+      @include media-breakpoint-up(lg) {
+        justify-content: flex-end;
+      }
 
       .social__button {
         color: $white;
@@ -76,10 +143,19 @@
           border: 1px solid $white;
           border-radius: 50%;
           color: inherit;
+          transition: color 0.15s ease-in-out,
+            background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+            box-shadow 0.15s ease-in-out;
 
           svg {
             width: 100%;
             height: 100%;
+          }
+
+          &:hover {
+            border-color: $primary;
+            background-color: $primary;
+            color: $body-bg;
           }
         }
       }

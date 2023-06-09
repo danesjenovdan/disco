@@ -1,26 +1,34 @@
 {% load static %}
 
-<nav class="navbar navbar-expand-lg pt-7 pb-6">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-lg pt-7 pt-lg-3 pb-6 pb-lg-3">
+  <div class="container">
     <a class="navbar-brand py-0" href="#">
-      <img src="{% static 'img/disco-logo.svg' %}" alt="Disco" width="56" height="54">
+      <img src="{% static 'img/disco-logo.svg' %}" alt="Disco">
     </a>
-    <div class="buttons-wrapper">
-      <a class="btn btn-primary" href="#">Register</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-        <div class="toggler-line"></div>
-        <div class="toggler-line"></div>
-      </button>
-    </div>
-    <div class="flex-grow-0 flex-shrink-0 collapse navbar-collapse" id="navbar">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        {% comment %} <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li> {% endcomment %}
-      </ul>
+    <div class="nav-wrapper">
+      <div class="flex-grow-0 flex-shrink-0 collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Programme</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Location</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+        </ul>
+      </div>
+      <div class="buttons-wrapper">
+        <a class="btn btn-primary" href="#">Register</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <div class="toggler-line"></div>
+          <div class="toggler-line"></div>
+        </button>
+      </div>
     </div>
   </div>
 </nav>

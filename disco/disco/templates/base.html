@@ -26,9 +26,8 @@
     <body class="{% block body_class %}{% endblock body_class %}">
         {% wagtailuserbar %}
 
-        {% block header %}{% endblock header %}
-
         <div class="page-container">
+            {% block header %}{% endblock header %}
             <main class="page-content">
                 {% block content %}{% endblock content %}
             </main>
