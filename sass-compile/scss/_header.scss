@@ -1,0 +1,38 @@
+.navbar {
+  > .container,
+  > .container-fluid {
+    align-items: stretch;
+  }
+
+  .buttons-wrapper {
+    display: flex;
+    gap: 0.5rem;
+
+    a.btn {
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      font-size: 20px;
+    }
+
+    .navbar-toggler {
+      padding: 0 10px;
+      border: 1px solid $white;
+      border-radius: 50%;
+
+      .toggler-line {
+        background: $white;
+        width: 32px;
+        height: 1px;
+
+        &:nth-child(1) {
+          transform: translateY(-5px);
+        }
+
+        &:nth-child(2) {
+          transform: translateY(5px);
+        }
+      }
+    }
+  }
+}
