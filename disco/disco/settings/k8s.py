@@ -20,8 +20,8 @@ DATABASES = {
     }
 }
 
-ALLOWED_HOSTS = ["localhost", "disco.lb.djnd.si"]
-CSRF_TRUSTED_ORIGINS = ["https://disco.lb.djnd.si"]
+ALLOWED_HOSTS = ["localhost", "disco.lb.djnd.si", "disco.si"]
+CSRF_TRUSTED_ORIGINS = ["https://disco.lb.djnd.si", "https://disco.si"]
 
 # DJANGO STORAGE SETTINGS
 if os.getenv("DJANGO_ENABLE_S3", False):

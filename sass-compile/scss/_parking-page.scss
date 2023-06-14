@@ -1,4 +1,4 @@
-.parking {
+.parking-page {
   display: grid;
   gap: 2rem;
   padding-bottom: 2rem;
@@ -11,7 +11,7 @@
 
   @include media-breakpoint-up(xxl) {
     gap: 4rem;
-    padding-top: 64px;
+    padding-top: 48px;
   }
 
   h1 {
@@ -33,6 +33,13 @@
 
     @include media-breakpoint-up(xxl) {
       font-size: 24px;
+    }
+
+    .alert {
+      --bs-alert-border-radius: 1rem;
+      max-width: 596px;
+      font-size: 16px;
+      text-align: center;
     }
 
     button {
@@ -57,17 +64,28 @@
       max-width: 596px;
 
       input {
-        padding: 17px 132px 17px 24px;
+        padding: 17px 24px;
         font-size: 20px;
+        background-color: $white;
 
         @include media-breakpoint-up(xxl) {
-          padding: 17px 132px 17px 32px;
+          padding: 17px 32px;
           font-size: 24px;
         }
 
         &:not(:focus) {
           border-color: transparent;
         }
+
+        &:disabled {
+          border-color: $primary;
+          background-color: $body-bg;
+          color: $white;
+        }
+      }
+
+      button + input {
+        padding-right: 132px;
       }
 
       button {
@@ -93,7 +111,8 @@
         border-color: $white;
 
         &:checked {
-          --bs-form-check-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle fill='%23fff' cx='12' cy='12' r='10'/></svg>");
+          --bs-form-check-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'><path fill='%23fff' d='M116.47 38.05 97.63 21.91 51.51 71.5 28.06 50.74 11.53 69.19l41.9 37.28z'/></svg>");
+          background-size: 81%;
         }
       }
 
@@ -118,47 +137,8 @@
   }
 
   .parking__socials {
-    @include media-breakpoint-up(lg) {
-      margin-top: auto;
-    }
-
-    .socials {
-      display: flex;
-      gap: 0.5rem;
-
-      @include media-breakpoint-up(lg) {
-        justify-content: flex-end;
-      }
-
-      .social__button {
-        color: $white;
-
-        a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 56px;
-          height: 56px;
-          padding: 14px;
-          border: 1px solid $white;
-          border-radius: 50%;
-          color: inherit;
-          transition: color 0.15s ease-in-out,
-            background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
-            box-shadow 0.15s ease-in-out;
-
-          svg {
-            width: 100%;
-            height: 100%;
-          }
-
-          &:hover {
-            border-color: $primary;
-            background-color: $primary;
-            color: $body-bg;
-          }
-        }
-      }
-    }
+    // @include media-breakpoint-up(lg) {
+    //   margin-top: auto;
+    // }
   }
 }
