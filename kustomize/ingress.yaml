@@ -10,9 +10,20 @@ spec:
   tls:
     - hosts:
         - disco.lb.djnd.si
+        - disco.si
       secretName: disco-tls
   rules:
     - host: disco.lb.djnd.si
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: disco
+                port:
+                  number: 8000
+    - host: disco.si
       http:
         paths:
           - path: /
@@ -30,7 +41,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-production"
     nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/cors-allow-origin: "https://disco.lb.djnd.si"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "https://disco.lb.djnd.si, https://disco.si"
 spec:
   ingressClassName: nginx
   tls:
