@@ -35,6 +35,13 @@
       font-size: 24px;
     }
 
+    .alert {
+      --bs-alert-border-radius: 1rem;
+      max-width: 596px;
+      font-size: 16px;
+      text-align: center;
+    }
+
     button {
       display: flex;
       gap: 1rem;
@@ -57,17 +64,28 @@
       max-width: 596px;
 
       input {
-        padding: 17px 132px 17px 24px;
+        padding: 17px 24px;
         font-size: 20px;
+        background-color: $white;
 
         @include media-breakpoint-up(xxl) {
-          padding: 17px 132px 17px 32px;
+          padding: 17px 32px;
           font-size: 24px;
         }
 
         &:not(:focus) {
           border-color: transparent;
         }
+
+        &:disabled {
+          border-color: $primary;
+          background-color: $body-bg;
+          color: $white;
+        }
+      }
+
+      button + input {
+        padding-right: 132px;
       }
 
       button {

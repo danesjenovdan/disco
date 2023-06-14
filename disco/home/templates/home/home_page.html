@@ -37,18 +37,21 @@
       </button>
 
       <div class="mb-2 mb-lg-3 mt-4 mt-lg-6">Stay updated on DISCO Slovenia news</div>
-      <div class="subscribe-group">
-        <input type="text" class="form-control bg-white" placeholder="Your email address">
-        <button class="btn btn-primary" type="button">Sign up</button>
-      </div>
-      <div class="form-check mt-2">
-        <input class="form-check-input" type="checkbox" value="" id="subscribe-check">
-        <label class="form-check-label text-white" for="subscribe-check">
-          Yes, I want to receive updates about the DISCO Slovenia conference and be among the first
-          to know when registration opens. Danes je nov dan will store my email and delete it
-          whenever I ask them to.
-        </label>
-      </div>
+      <form action="javascript:;" id="subscribe-form">
+        <div class="subscribe-group">
+          <button class="btn btn-primary" type="submit">Sign up</button>
+          <input type="email" required class="form-control" placeholder="Your email address">
+        </div>
+        <div class="form-check mt-2">
+          <input class="form-check-input" type="checkbox" value="" required id="subscribe-check">
+          <label class="form-check-label text-white" for="subscribe-check">
+            Yes, I want to receive updates about the DISCO Slovenia conference and be among the first
+            to know when registration opens. Danes je nov dan will store my email and delete it
+            whenever I ask them to.
+          </label>
+        </div>
+      </form>
+      <script type="module" src="{% static 'js/parking_subscribe.js' %}"></script>
     </div>
 
     <div class="parking__description">

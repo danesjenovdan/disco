@@ -34,3 +34,10 @@
   background-color: $body-bg;
   color: $primary;
 }
+
+input.form-control {
+  &,
+  &:focus {
+    color: $gray-800;
+  }
+}

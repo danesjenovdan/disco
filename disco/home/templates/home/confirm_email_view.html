@@ -12,7 +12,10 @@
 <div class="container fullsize-container">
   <div class="fullsize-page">
     <div class="fullsize-content">
-      <div class="thank-you">
+      <div class="loader-container">
+        <div class="loader"></div>
+      </div>
+      <div class="thank-you d-none">
         <h1 class="text-white mb-7">Thank you!</h1>
         <p class="lead">
           Your subscription to the
@@ -49,5 +52,6 @@
     </div>
   </div>
 </div>
+<script type="module" src="{% static 'js/confirm_email.js' %}"></script>
 
 {% endblock content %}
