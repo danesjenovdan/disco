@@ -39,9 +39,14 @@
         {% block extra_css %}{% endblock extra_css %}
 
         <script defer data-domain="disco.si" src="https://plausible.lb.djnd.si/js/plausible.js"></script>
+
+        <!-- SPINNING GLOBE -->
+        <script src="//unpkg.com/three"></script>
+        <script src="//unpkg.com/three-globe"></script>
     </head>
 
     <body class="{% block body_class %}{% endblock body_class %}">
+        <div id="disco-ball"></div>
         {% wagtailuserbar %}
 
         <div class="page-container">
@@ -52,5 +57,82 @@
         </div>
 
         {% block extra_js %}{% endblock extra_js %}
+
+        <style>
+            .bg-grid {
+                background-image: none;
+            }
+            @keyframes discoBallFadeIn {
+                0% { opacity: 0; }
+                70% { opacity: 0; }
+                100% { opacity: 1; }
+            }
+
+            #disco-ball {
+                opacity: 0;
+                position:fixed;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+
+                filter: brightness(0.3);
+                
+                animation: discoBallFadeIn 2s forwards;
+            }
+        </style>
+        <script type="module">
+
+            const TILE_MARGIN = 0.06; // degrees
+
+            const GRID_SIZE = [64, 32];
+            const material = new THREE.MeshLambertMaterial({ color: 'black', opacity: 0.6, transparent: false });
+            const tileWidth = 360 / GRID_SIZE[0];
+            const tileHeight = 180 / GRID_SIZE[1];
+            const tilesData = [];
+            [...Array(GRID_SIZE[0]).keys()].forEach(lngIdx =>
+                [...Array(GRID_SIZE[1]).keys()].forEach(latIdx =>
+                tilesData.push({
+                    lng: -180 + lngIdx * tileWidth,
+                    lat: -90 + (latIdx + 0.5) * tileHeight,
+                    material: material,
+                })
+                )
+            );
+
+            const Globe = new ThreeGlobe({animateIn: false})
+                .tilesData(tilesData)
+                .tileWidth(tileWidth - TILE_MARGIN)
+                .tileHeight(tileHeight - TILE_MARGIN)
+                .tileMaterial('material')
+                .showAtmosphere(false);
+
+            // Setup renderer
+            const renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('disco-ball').appendChild(renderer.domElement);
+
+            // Setup scene
+            const scene = new THREE.Scene();
+            scene.add(Globe);
+
+            const spotLight = new THREE.SpotLight( 0xcccccc, 1000000000000000000000 );
+            spotLight.position.set( 0, 0, 10000000000000000000 );
+            scene.add(spotLight);
+
+            // Setup camera
+            const camera = new THREE.PerspectiveCamera();
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            camera.position.z = 140;
+
+            // Kick-off renderer
+            (function animate() { // IIFE
+                // Frame cycle
+                Globe.rotation.y += 0.0001;
+                renderer.render(scene, camera);
+                requestAnimationFrame(animate);
+            })();
+        </script>
     </body>
 </html>
