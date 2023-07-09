@@ -7,6 +7,65 @@ from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.images.blocks import ImageChooserBlock
 
 
+### MODELS
+
+class Speaker(models.Model):
+    name = models.TextField()
+    short_description = models.TextField(blank=True)
+    image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name="+"
+    )
+    social_media = StreamField([
+        ("instagram", blocks.URLBlock()),
+        ("mastodon", blocks.URLBlock()),
+        ("twitter", blocks.URLBlock()),
+        ("facebook", blocks.URLBlock()),
+        ("website", blocks.URLBlock()),
+        ("podcast", blocks.URLBlock()),
+        ("linkedin", blocks.URLBlock()),
+        ("youtube", blocks.URLBlock()),
+    ], use_json_field=True, blank=True, max_num=3)
+
+    def __str__(self):
+        return self.name
+
+
+class ProgrammeDay(models.Model):
+    title = models.TextField()
+    location = models.TextField()
+    available_for = models.TextField()
+    image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name="+"
+    )
+    description = models.TextField()
+    date = models.DateField()
+    timeslots = StreamField([
+        ("timeslot", blocks.StructBlock([
+            ("time", blocks.CharBlock()),
+            ("panels_list", blocks.StreamBlock([
+                ("panel", blocks.StructBlock([
+                    ("name", blocks.CharBlock()),
+                    ("speaker_page", blocks.PageChooserBlock(page_type="home.NewsPage", required=False)),
+                    ("description", blocks.TextBlock()),
+                ]))
+            ], use_json_field=True))
+        ]))
+    ], use_json_field=True)
+
+    def __str__(self):
+        return self.title
+    
+
+def get_speakers():
+    return [(speaker.id, speaker.name) for speaker in Speaker.objects.all()]
+
+
 ### PAGES
 
 class HomePage(Page):
@@ -18,9 +77,9 @@ class NewHomePage(Page):
     subtitle = models.TextField()
     intro_text = models.TextField()
     # speakers
-    # exposed_speakers = models.StreamField([
-    #     speaker = 
-    # ])
+    exposed_speakers = StreamField([
+        ("speaker", blocks.ChoiceBlock(choices=get_speakers()))
+    ], use_json_field=True, null=True, blank=True)
     show_tba = models.BooleanField(default=False)
     # scholarship
     scholarship_title = models.TextField()
@@ -59,7 +118,7 @@ class NewHomePage(Page):
         ),
         MultiFieldPanel(
             [
-                # FieldPanel("exposed_speakers"),
+                FieldPanel("exposed_speakers"),
                 FieldPanel("show_tba"),
             ],
             heading="Speakers"
@@ -130,10 +189,11 @@ class NewsPage(Page):
         related_name="+"
     )
     body = RichTextField()
-    # speaker
+    speaker = models.ForeignKey(Speaker, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
 
     content_panels = Page.content_panels + [
         FieldPanel("short_description"),
+        FieldPanel("speaker"),
         FieldPanel("image"),
         FieldPanel("body"),
     ]
