@@ -1,0 +1,285 @@
+{% extends "new_base.html" %}
+{% load static wagtailimages_tags %}
+
+{% block body_class %}bg-grid{% endblock %}
+
+{% block header %}
+  {% include 'home/partials/new_header.html' %}
+{% endblock header %}
+
+{% block content %}
+
+<div class="container hero mb-5">
+  <div class="row">
+    <div class="col-6">
+      <h1>
+        DISCO<br/>Slovenia
+      </h1>
+      <h2>
+        Digital Sovereignty Conference
+      </h2>
+      <h2>
+        24–26 October 2023 <br />Ljubljana, Slovenia
+      </h2>
+    </div>
+    <div class="col-6 d-flex flex-column justify-content-end">
+      <h3>
+        {{ page.subtitle }}
+      </h3>
+      <p>
+        {{ page.intro_text }}
+      </p>
+    </div>
+  </div>
+</div>
+
+{% include 'home/partials/register_banner.html' %}
+
+<div id="news" class="container news">
+  <div class="row">
+    <div class="col-12">
+      <h2>Latest news</h2>
+    </div>
+  </div>
+  <div class="row">
+    {% for news in exposed_news %}
+    <div class="col-3">
+      <div class="card">
+        {% image news.image original class="card-img-top img-fluid" %}
+        <div class="card-body px-0">
+          <h5 class="card-title">{{ news.title }}</h5>
+          <h6 class="card-subtitle text-body-secondary">{{ news.first_published_at|date:"j. n. Y" }}</h6>
+          <p class="card-text">{{ news.short_description }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <a href="/">More news</a>
+    </div>
+  </div>
+</div>
+
+{% include 'home/partials/newsletter.html' %}
+
+<div class="speakers" id="speakers">
+  <div class="spinning-banner heading-banner">
+    <div>
+      <h2>Speakers – Speakers – Speakers –</h2>
+    </div>
+    <div aria-hidden="true">
+      <h2>Speakers – Speakers – Speakers – </h2>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row my-7">
+      {% for speaker in speakers %}
+      <div class="col-3">
+        <div class="card">
+          {% image speaker.image original class="card-img-top" %}
+          <div class="card-body px-0">
+            <h5 class="card-title">{{ speaker.name }}</h5>
+            <p class="card-text">{{ speaker.short_description }}</p>
+            <hr />
+            {% for sm in speaker.social_media %}
+              {{ sm.value }}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% if page.show_tba %}
+      <div class="col-3">
+        <div class="card">
+          <img src="{% static 'img/speaker-TBA.jpg' %}" class="card-img-top" />
+          <div class="card-body px-0">
+            <h5 class="card-title">More TBA</h5>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <a href="/">Meet all speakers</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="programme" id="programme">
+  <div class="spinning-banner heading-banner">
+    <div>
+      <h2>Programme – Programme – Programme –</h2>
+    </div>
+    <div aria-hidden="true">
+      <h2>Programme – Programme – Programme – </h2>
+    </div>
+  </div>
+  <div class="container">
+    {% for day in programme %}
+    <div class="row my-7">
+      <div class="col-12">
+        <div class="programme-day d-flex">
+          <div class="programme-day-column">
+            <div>
+              <h3 class="text-center">{{ day.title }}</h3>
+            </div>
+            <div class="programme-day-column-row d-flex">
+              <div class="d-flex flex-column">
+                <span>Location</span>
+                <span>{{ day.location }}</span>
+              </div>
+              <div class="d-flex flex-column">
+                <span>Available for</span>
+                <span>{{ day.available_for }}</span>
+              </div>
+            </div>
+            <div class="p-7 text-center">
+              {% image day.image original class="img-fluid" %}
+            </div>
+          </div>
+          <div class="programme-day-column d-flex flex-column">
+            <div class="p-6 flex-grow-1 d-flex align-items-center">
+              <p class="mb-0">{{ day.description }}</p>
+            </div>
+            <div class="p-3 text-center">
+              <button class="btn btn-primary">See more / Details</button>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="container location" id="location">
+  <div class="row">
+    <div class="col-12 d-flex align-items-center my-5">
+      <h2>Location</h2>
+      <button class="mx-5 btn btn-primary">Venue, accommodation & logistics</button>
+    </div>
+    <div class="col-12">
+      <img src="{% static 'img/ljubljana.png' %}" class="img-fluid" />
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid scholarship">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <img src="{% static 'img/scholarship.png' %}" class="img-fluid" />
+      </div>
+      <div class="col-6">
+        <h2>{{ page.scholarship_title }}</h2>
+        <p>{{ page.scholarship_description }}</p>
+        <div>
+          <button class="btn btn-primary">Register now and apply for the scholarship</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container about">
+  <div class="row">
+    <div class="col-12">
+      <h2>About</h2>
+    </div>
+  </div>
+  {% for paragraph in page.about %}
+    {% if paragraph.value.positioning == 'no-image' %}
+    <div class="row my-5 justify-content-center">
+      <div class="col-6">
+        <p>{{ paragraph.value.text }}</p>
+      </div>
+    </div>
+    {% elif paragraph.value.positioning == 'just-image' %}
+    <div class="row my-5">
+      <div class="col-12 d-flex justify-content-center">
+        {% image paragraph.value.image original class="img-fluid" %}
+      </div>
+    </div>
+    {% elif paragraph.value.positioning == 'image-left' %}
+    <div class="row my-5">
+      <div class="col-6 d-flex align-items-center">
+        {% image paragraph.value.image original class="img-fluid" %}
+      </div>
+      <div class="col-6 d-flex align-items-center">
+        <p>{{ paragraph.value.text }}</p>
+      </div>
+    </div>
+    {% elif paragraph.value.positioning == 'image-right' %}
+    <div class="row my-5">
+      <div class="col-6 d-flex align-items-center">
+        <p>{{ paragraph.value.text }}</p>
+      </div>
+      <div class="col-6 d-flex align-items-center">
+        {% image paragraph.value.image original class="img-fluid" %}
+      </div>
+    </div>
+    {% endif %}
+    
+  {% endfor %}
+</div>
+
+<div class="organized-by bg-grid py-7">
+  <div class="container-fluid">
+      <div class="row justify-content-center">
+          <div class="col-10 pill white-pill">
+              <div class="row justify-content-center">
+                <div class="col-9">
+                  <div class="row">
+                    <div class="col-6">
+                      <h2>{{ page.organized_by_title }}</h2>
+                    </div>
+                    <div class="col-6 d-flex align-items-center">
+                      <p>{{ page.organized_by_text }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="container supporters">
+  <div class="row">
+    <div class="col-12">
+      <hr />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <h4>Supported by</h4>
+    </div>
+    <div class="col-9">
+      logos
+    </div>
+  </div>
+  {% if page.sponsored_by %}
+  <div class="row">
+    <div class="col-12">
+      <hr />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <h4>Supported by</h4>
+    </div>
+    <div class="col-9">
+      {% for sponsor in page.sponsored_by %}
+      <div>{{ sponsor.value }}</div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}  
+</div>
+
+{% endblock content %}

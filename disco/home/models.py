@@ -52,7 +52,7 @@ class ProgrammeDay(models.Model):
                 ("panel", blocks.StructBlock([
                     ("name", blocks.CharBlock()),
                     ("speaker_page", blocks.PageChooserBlock(page_type="home.NewsPage", required=False)),
-                    ("description", blocks.TextBlock()),
+                    ("description", blocks.TextBlock(required=False)),
                 ]))
             ], use_json_field=True))
         ]))
@@ -67,6 +67,30 @@ def get_speakers():
 
 
 ### PAGES
+
+class NewsListPage(Page):
+    pass
+
+
+class NewsPage(Page):
+    short_description = models.TextField(blank=True)
+    image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+"
+    )
+    body = RichTextField()
+    speaker = models.ForeignKey(Speaker, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+
+    content_panels = Page.content_panels + [
+        FieldPanel("short_description"),
+        FieldPanel("speaker"),
+        FieldPanel("image"),
+        FieldPanel("body"),
+    ]
+
 
 class HomePage(Page):
     parent_page_types = []
@@ -151,6 +175,15 @@ class NewHomePage(Page):
         ),
     ]
 
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+
+        context["exposed_news"] = NewsPage.objects.live()
+        context["programme"] = ProgrammeDay.objects.all()
+        context["speakers"] = Speaker.objects.filter(id__in=[speaker.value for speaker in self.exposed_speakers])
+
+        return context
+
 
 class SpeakersAndProgrammePage(Page):
     pass
@@ -172,30 +205,6 @@ class LocationPage(Page):
         FieldPanel("description"),
         FieldPanel("accommodation_description"),
         FieldPanel("accommodation_options"),
-    ]
-
-
-class NewsListPage(Page):
-    pass
-
-
-class NewsPage(Page):
-    short_description = models.TextField(blank=True)
-    image = models.ForeignKey(
-        "wagtailimages.Image",
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name="+"
-    )
-    body = RichTextField()
-    speaker = models.ForeignKey(Speaker, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
-
-    content_panels = Page.content_panels + [
-        FieldPanel("short_description"),
-        FieldPanel("speaker"),
-        FieldPanel("image"),
-        FieldPanel("body"),
     ]
 
 
