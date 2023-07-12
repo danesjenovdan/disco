@@ -69,7 +69,13 @@ def get_speakers():
 ### PAGES
 
 class NewsListPage(Page):
-    pass
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+
+        context["news"] = NewsPage.objects.live()
+
+        return context
 
 
 class NewsPage(Page):
@@ -186,7 +192,14 @@ class NewHomePage(Page):
 
 
 class SpeakersAndProgrammePage(Page):
-    pass
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+
+        context["programme"] = ProgrammeDay.objects.all()
+        context["speakers"] = Speaker.objects.all()
+
+        return context
 
 
 class LocationPage(Page):
