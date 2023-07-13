@@ -112,6 +112,69 @@
   }
 }
 
+.rich-text {
+
+  h2, h3, h4 {
+    color: $disco-white;
+
+    &:not(:first-child) {
+      margin-top: 32px;
+    }
+  }
+
+  h2 {
+    font-size: 48px;
+    line-height: 48px;
+  }
+
+  h3 {
+    font-size: 32px;
+    line-height: 34px;
+  }
+
+  h4 {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 20px;
+    color: $disco-white;
+  }
+}
+
+hr.divider {
+  border-width: 2px;
+  border-color: $disco-pink;
+  opacity: 1;
+  position: relative;
+  margin: 40px 22px;
+  overflow: visible;
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    width: 46px;
+    height: 46px;
+    background-image: url("/static/img/disco-logo.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+  }
+
+  &::before {
+    top: -24px;
+    left: -22px;
+  }
+
+  &::after {
+    top: -24px;
+    right: -22px;
+  }
+}
+
 .page-wrapper {  
   .hero {
     h1, h2, h3 {
@@ -331,37 +394,6 @@
   .supporters {
     padding-top: 100px;
     padding-bottom: 100px;
-
-    hr {
-      border-width: 2px;
-      border-color: $disco-pink;
-      opacity: 1;
-      position: relative;
-      margin: 40px 22px;
-      overflow: visible;
-
-      &::before,
-      &::after {
-        content: "";
-        display: block;
-        width: 46px;
-        height: 46px;
-        background-image: url("/static/img/disco-logo.svg");
-        background-repeat: no-repeat;
-        background-size: contain;
-        position: absolute;
-      }
-
-      &::before {
-        top: -24px;
-        left: -22px;
-      }
-
-      &::after {
-        top: -24px;
-        right: -22px;
-      }
-    }
   }
 }
 
@@ -378,23 +410,8 @@
     line-height: 27px; 
     color: $disco-white;
   }
+}
 
-  .rich-text {
-    
+.location-page {
 
-    h2 {
-      font-size: 32px;
-      line-height: 34px;
-      color: $disco-white;
-
-      &:not(:first-child) {
-        margin-top: 30px;
-      }
-    }
-
-    p {
-      font-size: 16px;
-      line-height: 20px;
-    }
-  }
 }
