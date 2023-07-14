@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import render
 
 from wagtail import blocks
 from wagtail.fields import StreamField, RichTextField
@@ -6,67 +7,8 @@ from wagtail.models import Page
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.images.blocks import ImageChooserBlock
 
-
-### MODELS
-
-class Speaker(models.Model):
-    name = models.TextField()
-    short_description = models.TextField(blank=True)
-    image = models.ForeignKey(
-        "wagtailimages.Image",
-        null=True,
-        on_delete=models.SET_NULL,
-        related_name="+"
-    )
-    social_media = StreamField([
-        ("instagram", blocks.URLBlock()),
-        ("mastodon", blocks.URLBlock()),
-        ("twitter", blocks.URLBlock()),
-        ("facebook", blocks.URLBlock()),
-        ("website", blocks.URLBlock()),
-        ("podcast", blocks.URLBlock()),
-        ("linkedin", blocks.URLBlock()),
-        ("youtube", blocks.URLBlock()),
-    ], use_json_field=True, blank=True, max_num=3)
-
-    def __str__(self):
-        return self.name
-
-
-class ProgrammeDay(models.Model):
-    title = models.TextField()
-    location = models.TextField()
-    available_for = models.TextField()
-    image = models.ForeignKey(
-        "wagtailimages.Image",
-        null=True,
-        on_delete=models.SET_NULL,
-        related_name="+"
-    )
-    description = models.TextField()
-    date = models.DateField()
-    timeslots = StreamField([
-        ("timeslot", blocks.StructBlock([
-            ("time", blocks.CharBlock()),
-            ("panels_list", blocks.StreamBlock([
-                ("panel", blocks.StructBlock([
-                    ("name", blocks.CharBlock()),
-                    ("speaker_page", blocks.PageChooserBlock(page_type="home.NewsPage", required=False)),
-                    ("description", blocks.TextBlock(required=False)),
-                ]))
-            ], use_json_field=True))
-        ]))
-    ], use_json_field=True)
-
-    def __str__(self):
-        return self.title
-    
-
-def get_speakers():
-    return [(speaker.id, speaker.name) for speaker in Speaker.objects.all()]
-
-
-### PAGES
+from .other import ProgrammeDay, Speaker
+from ..forms import IndividualForm
 
 class NewsListPage(Page):
 
@@ -101,6 +43,9 @@ class NewsPage(Page):
 class HomePage(Page):
     parent_page_types = []
 
+
+def get_speakers():
+    return [(speaker.id, speaker.name) for speaker in Speaker.objects.all()]
 
 class NewHomePage(Page):
     # hero section
@@ -218,14 +163,6 @@ class LocationPage(Page):
         FieldPanel("description"),
         FieldPanel("accommodation_description"),
         FieldPanel("accommodation_options"),
-    ]
-
-
-class RegistrationPage(Page):
-    show_scholarship_option = models.BooleanField(default=True)
-
-    content_panels = Page.content_panels + [
-        FieldPanel("show_scholarship_option"),
     ]
 
 
