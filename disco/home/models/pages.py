@@ -126,7 +126,7 @@ class NewHomePage(Page):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
 
-        context["programme"] = ProgrammeDay.objects.all()
+        context["programme"] = ProgrammeDay.objects.all().order_by("date")
         context["speakers"] = Speaker.objects.filter(id__in=[speaker.value for speaker in self.exposed_speakers])
 
         try:
@@ -159,7 +159,7 @@ class SpeakersAndProgrammePage(Page):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
 
-        context["programme"] = ProgrammeDay.objects.all()
+        context["programme"] = ProgrammeDay.objects.all().order_by("date")
         context["speakers"] = Speaker.objects.all()
 
         return context

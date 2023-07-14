@@ -246,6 +246,12 @@ hr.divider {
         font-size: 14px;
         line-height: 18px;
       }
+
+      &:hover {
+        .card-title {
+          text-decoration: underline;
+        }
+      }
     }
   }
 
@@ -253,7 +259,7 @@ hr.divider {
   .programme {
     .card {
       text-decoration: none;
-      
+
       .card-img-top {
         height: 286px;
         object-fit: cover;
@@ -268,6 +274,12 @@ hr.divider {
       .card-text {
         font-size: 18px;
         line-height: 22px;
+      }
+
+      &:hover {
+        .card-title {
+          text-decoration: underline;
+        }
       }
     }
   }
@@ -421,5 +433,29 @@ hr.divider {
 }
 
 .location-page {
+  .card {
+    text-decoration: none;
+    
+    .card-img-top {
+      height: 149px;
+      object-fit: cover;
+    }
 
+    .card-title {
+      font-size: 24px; 
+      color: $disco-white;
+      line-height: 30px;
+    }
+
+    .card-text {
+      font-size: 14px;
+      line-height: 18px;
+    }
+
+    &:hover {
+      .card-title {
+        text-decoration: underline;
+      }
+    }
+  }
 }
