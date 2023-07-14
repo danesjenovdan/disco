@@ -7,7 +7,7 @@ from wagtail.models import Page
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.images.blocks import ImageChooserBlock
 
-from .other import ProgrammeDay, Speaker, get_speakers
+from .other import ProgrammeDay, Speaker
 
 
 class NewsPage(Page):
@@ -49,9 +49,6 @@ class NewHomePage(Page):
     subtitle = models.TextField()
     intro_text = models.TextField()
     # speakers
-    exposed_speakers = StreamField([
-        ("speaker", blocks.ChoiceBlock(choices=get_speakers()))
-    ], use_json_field=True, null=True, blank=True)
     show_tba = models.BooleanField(default=False)
     # scholarship
     scholarship_title = models.TextField()
@@ -90,7 +87,6 @@ class NewHomePage(Page):
         ),
         MultiFieldPanel(
             [
-                FieldPanel("exposed_speakers"),
                 FieldPanel("show_tba"),
             ],
             heading="Speakers"
@@ -127,7 +123,7 @@ class NewHomePage(Page):
         context = super().get_context(request, *args, **kwargs)
 
         context["programme"] = ProgrammeDay.objects.all().order_by("date")
-        context["speakers"] = Speaker.objects.filter(id__in=[speaker.value for speaker in self.exposed_speakers])
+        context["speakers"] = Speaker.objects.filter(exposed=True)
 
         try:
             news_list = NewsListPage.objects.first()

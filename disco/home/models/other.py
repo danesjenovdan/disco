@@ -22,16 +22,10 @@ class Speaker(models.Model):
         ("linkedin", blocks.URLBlock()),
         ("youtube", blocks.URLBlock()),
     ], use_json_field=True, blank=True, max_num=3)
+    exposed = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
-
-
-def get_speakers():
-    try:
-        return [(speaker.id, speaker.name) for speaker in Speaker.objects.all()]
-    except:
-        return []
 
 
 class ProgrammeDay(models.Model):
