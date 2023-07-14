@@ -1,5 +1,5 @@
 {% extends "new_base.html" %}
-{% load static wagtailimages_tags %}
+{% load static wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}bg-grid{% endblock %}
 
@@ -55,16 +55,18 @@
     </div>
     {% endfor %}
   </div>
+  {% if news_list %}
   <div class="row">
     <div class="col-12">
-      <a href="/">More news</a>
+      <a href="{% pageurl news_list %}">More news</a>
     </div>
   </div>
+  {% endif %}
 </div>
 
 {% include 'home/partials/newsletter.html' %}
 
-<div class="speakers" id="speakers">
+<div id="speakers" class="speakers">
   <div class="spinning-banner heading-banner">
     <div>
       <h2>Speakers – Speakers – Speakers –</h2>
@@ -101,15 +103,17 @@
       </div>
       {% endif %}
     </div>
+    {% if speakers_and_programme_page %}
     <div class="row">
       <div class="col-12">
-        <a href="/">Meet all speakers</a>
+        <a href="{% pageurl speakers_and_programme_page %}">Meet all speakers</a>
       </div>
     </div>
+    {% endif %}
   </div>
 </div>
 
-<div class="programme" id="programme">
+<div class="programme">
   <div class="spinning-banner heading-banner">
     <div>
       <h2>Programme – Programme – Programme –</h2>
@@ -146,7 +150,7 @@
               <p class="mb-0">{{ day.description }}</p>
             </div>
             <div class="p-3 text-center">
-              <button class="btn btn-primary">See more / Details</button>
+              <a href="{% pageurl speakers_and_programme_page %}" class="btn btn-primary">See more / Details</a>
             </div>
           </div>
         </div>
@@ -157,11 +161,11 @@
   </div>
 </div>
 
-<div class="container location" id="location">
+<div id="location" class="container location">
   <div class="row">
     <div class="col-12 d-flex align-items-center my-5">
       <h2>Location</h2>
-      <button class="mx-5 btn btn-primary">Venue, accommodation & logistics</button>
+      <a href="{% pageurl location_page %}" class="mx-5 btn btn-primary">Venue, accommodation & logistics</a>
     </div>
     <div class="col-12">
       <img src="{% static 'img/ljubljana.png' %}" class="img-fluid" />
@@ -169,7 +173,7 @@
   </div>
 </div>
 
-<div class="container-fluid scholarship">
+<div id="scholarship" class="container-fluid scholarship">
   <div class="container">
     <div class="row">
       <div class="col-6">
@@ -186,7 +190,7 @@
   </div>
 </div>
 
-<div class="container about">
+<div id="about" class="container about">
   <div class="row">
     <div class="col-12">
       <h2>About</h2>

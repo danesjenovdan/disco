@@ -7,7 +7,7 @@ from wagtail.models import Page
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.images.blocks import ImageChooserBlock
 
-from .other import ProgrammeDay, Speaker
+from .other import ProgrammeDay, Speaker, get_speakers
 
 
 class NewsListPage(Page):
@@ -43,9 +43,6 @@ class NewsPage(Page):
 class HomePage(Page):
     parent_page_types = []
 
-
-def get_speakers():
-    return [(speaker.id, speaker.name) for speaker in Speaker.objects.all()]
 
 class NewHomePage(Page):
     # hero section
@@ -132,6 +129,25 @@ class NewHomePage(Page):
         context["exposed_news"] = NewsPage.objects.live()
         context["programme"] = ProgrammeDay.objects.all()
         context["speakers"] = Speaker.objects.filter(id__in=[speaker.value for speaker in self.exposed_speakers])
+
+        try:
+            news_list = NewsListPage.objects.first()
+        except:
+            news_list = None
+
+        try:
+            speakers_and_programme_page = SpeakersAndProgrammePage.objects.first()
+        except:
+            speakers_and_programme_page = None
+
+        try:
+            location_page = LocationPage.objects.first()
+        except:
+            location_page = None
+        
+        context["news_list"] = news_list
+        context["speakers_and_programme_page"] = speakers_and_programme_page
+        context["location_page"] = location_page
 
         return context
 
