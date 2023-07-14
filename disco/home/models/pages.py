@@ -10,16 +10,6 @@ from wagtail.images.blocks import ImageChooserBlock
 from .other import ProgrammeDay, Speaker, get_speakers
 
 
-class NewsListPage(Page):
-
-    def get_context(self, request, *args, **kwargs):
-        context = super().get_context(request, *args, **kwargs)
-
-        context["news"] = NewsPage.objects.live()
-
-        return context
-
-
 class NewsPage(Page):
     short_description = models.TextField(blank=True)
     image = models.ForeignKey(
@@ -38,6 +28,16 @@ class NewsPage(Page):
         FieldPanel("image"),
         FieldPanel("body"),
     ]
+
+
+class NewsListPage(Page):
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+
+        context["news"] = NewsPage.objects.live().child_of(self).order_by("-first_published_at")
+
+        return context
 
 
 class HomePage(Page):
@@ -126,7 +126,7 @@ class NewHomePage(Page):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
 
-        context["exposed_news"] = NewsPage.objects.live()
+        context["exposed_news"] = NewsPage.objects.live().child_of(self).order_by("-first_published_at")[:4]
         context["programme"] = ProgrammeDay.objects.all()
         context["speakers"] = Speaker.objects.filter(id__in=[speaker.value for speaker in self.exposed_speakers])
 
