@@ -1,5 +1,5 @@
 {% extends "new_base.html" %}
-{% load static wagtailimages_tags %}
+{% load static wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}bg-grid{% endblock %}
 
@@ -18,14 +18,14 @@
   <div class="row">
     {% for news_page in news %}
     <div class="col-3">
-      <div class="card">
+      <a href="{% pageurl news_page %}" class="card">
         {% image news_page.image original class="card-img-top img-fluid" %}
         <div class="card-body px-0">
           <h5 class="card-title">{{ news_page.title }}</h5>
           <h6 class="card-subtitle text-body-secondary">{{ news_page.first_published_at|date:"j. n. Y" }}</h6>
           <p class="card-text">{{ news_page.short_description }}</p>
         </div>
-      </div>
+      </a>
     </div>
     {% endfor %}
   </div>
