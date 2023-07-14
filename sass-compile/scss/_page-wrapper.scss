@@ -259,6 +259,7 @@ hr.divider {
 
     .card {
       text-decoration: none;
+      background-color: transparent;
 
       .card-img-top {
         height: 149px;
@@ -293,6 +294,7 @@ hr.divider {
   .programme {
     .card {
       text-decoration: none;
+      background-color: transparent;
 
       .card-img-top {
         height: 286px;
@@ -313,6 +315,23 @@ hr.divider {
       &:hover {
         .card-title {
           text-decoration: underline;
+        }
+      }
+    }
+
+    .social-media {
+      display: flex;
+
+      a {
+        width: 36px;
+        height: 36px;
+        border: 1px solid $disco-white;
+        border-radius: 50%;
+        margin-right: 15px;
+
+        img {
+          max-width: 50%;
+          max-height: 50%;
         }
       }
     }
@@ -469,6 +488,7 @@ hr.divider {
 .location-page {
   .card {
     text-decoration: none;
+    background-color: transparent;
     
     .card-img-top {
       height: 149px;
