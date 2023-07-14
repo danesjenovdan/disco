@@ -344,6 +344,14 @@ hr.divider {
     h3 {
       font-size: 72px;
       margin: 40px 0;
+    }
+
+    h4 {
+      font-size: 32px;
+      line-height: 34px;
+    }
+
+    h3, h4, h5 {
       color: $disco-white;
     }
 
@@ -363,6 +371,16 @@ hr.divider {
 
       & > div:not(:last-child) {
         border-bottom: 1px solid $disco-white;
+      }
+    }
+
+    .timeslot {
+      .programme-day-column:first-child {
+        flex-basis: 20%;
+      }
+
+      .programme-day-column:last-child {
+        flex-basis: 80%;
       }
     }
 
@@ -392,6 +410,41 @@ hr.divider {
           }
         }
       }
+    }
+
+    .panel {
+      border-bottom: none !important;
+      padding: 20px;
+      border-radius: 25px; 
+      
+      &:nth-child(odd) {
+        background-color: $disco-pink;
+      }
+
+      &:nth-child(even) {
+        background-color: $disco-bright-pink;
+      }
+
+      h5 {
+        font-size: 24px;
+        line-height: 30px;
+      }
+
+      h6 a {
+        font-size: 18px;
+        line-height: 22px;
+      }
+
+      p {
+        font-size: 14px;
+        line-height: 18px;
+        margin-bottom: 0;
+      }
+
+      h5, h6 a, p {
+        color: $disco-black;
+      }
+      
     }
   }
 
