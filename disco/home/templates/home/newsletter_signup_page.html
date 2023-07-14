@@ -1,0 +1,16 @@
+{% extends "new_base.html" %}
+{% load static wagtailimages_tags %}
+
+{% block body_class %}bg-grid{% endblock %}
+
+{% block header %}
+  {% include 'home/partials/new_header.html' %}
+{% endblock header %}
+
+{% block content %}
+
+{% include 'home/partials/newsletter.html' %}
+
+{% include 'home/partials/register_banner.html' %}
+
+{% endblock content %}

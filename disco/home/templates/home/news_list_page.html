@@ -1,0 +1,38 @@
+{% extends "new_base.html" %}
+{% load static wagtailimages_tags %}
+
+{% block body_class %}bg-grid{% endblock %}
+
+{% block header %}
+  {% include 'home/partials/new_header.html' %}
+{% endblock header %}
+
+{% block content %}
+
+<div id="news" class="container news">
+  <div class="row">
+    <div class="col-12">
+      <h2>News</h2>
+    </div>
+  </div>
+  <div class="row">
+    {% for news_page in news %}
+    <div class="col-3">
+      <div class="card">
+        {% image news_page.image original class="card-img-top img-fluid" %}
+        <div class="card-body px-0">
+          <h5 class="card-title">{{ news_page.title }}</h5>
+          <h6 class="card-subtitle text-body-secondary">{{ news_page.first_published_at|date:"j. n. Y" }}</h6>
+          <p class="card-text">{{ news_page.short_description }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% include 'home/partials/newsletter.html' %}
+
+{% include 'home/partials/register_banner.html' %}
+
+{% endblock content %}

@@ -1,0 +1,417 @@
+.pill {
+  border: 1px solid $disco-black;
+  border-radius: 250px;
+  padding: 50px 0;
+
+  h2 {
+      font-size: 48px;
+      margin-bottom: 20px;
+  }
+
+  p {
+      font-size: 18px;
+  }
+
+  form {
+    margin-top: 20px;
+    font-size: 22px;
+
+    @include media-breakpoint-up(lg) {
+      grid-column: 2;
+    }
+
+    @include media-breakpoint-up(xxl) {
+      font-size: 24px;
+    }
+
+    .alert {
+      --bs-alert-border-radius: 1rem;
+      max-width: 596px;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    button {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      padding: 12px 24px;
+      font-size: 20px;
+
+      @include media-breakpoint-up(xxl) {
+        padding: 13px 33px;
+        font-size: 24px;
+      }
+
+      svg {
+        width: 22px;
+      }
+    }
+
+    .subscribe-group {
+      position: relative;
+      max-width: 596px;
+
+      input {
+        padding: 17px 24px;
+        font-size: 20px;
+        background-color: $white;
+
+        @include media-breakpoint-up(xxl) {
+          padding: 17px 32px;
+          font-size: 24px;
+        }
+
+        &:not(:focus) {
+          border-color: transparent;
+        }
+
+        &:disabled {
+          border-color: $primary;
+          background-color: $body-bg;
+          color: $white;
+        }
+      }
+
+      button + input {
+        padding-right: 132px;
+      }
+
+      button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: 4px;
+      }
+    }
+
+    .form-check {
+      padding-left: 32px;
+      font-size: 14px;
+      line-height: 1.2;
+
+      .form-check-input {
+        width: 24px;
+        height: 24px;
+        margin-top: 4px;
+        margin-left: -32px;
+        background-color: $body-bg;
+        border-color: $white;
+
+        &:checked {
+          --bs-form-check-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'><path fill='%23fff' d='M116.47 38.05 97.63 21.91 51.51 71.5 28.06 50.74 11.53 69.19l41.9 37.28z'/></svg>");
+          background-size: 81%;
+        }
+      }
+
+      .form-check-label {
+        max-width: 440px;
+      }
+    }
+  }
+}
+
+.rich-text {
+
+  h2, h3, h4 {
+    color: $disco-white;
+
+    &:not(:first-child) {
+      margin-top: 32px;
+    }
+  }
+
+  h2 {
+    font-size: 48px;
+    line-height: 48px;
+  }
+
+  h3 {
+    font-size: 32px;
+    line-height: 34px;
+  }
+
+  h4 {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 20px;
+    color: $disco-white;
+  }
+}
+
+hr.divider {
+  border-width: 2px;
+  border-color: $disco-pink;
+  opacity: 1;
+  position: relative;
+  margin: 40px 22px;
+  overflow: visible;
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    width: 46px;
+    height: 46px;
+    background-image: url("/static/img/disco-logo.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+  }
+
+  &::before {
+    top: -24px;
+    left: -22px;
+  }
+
+  &::after {
+    top: -24px;
+    right: -22px;
+  }
+}
+
+.page-wrapper {  
+  .hero {
+    h1, h2, h3 {
+      line-height: 0.9;
+    }
+
+    h1 {
+      color: $disco-white;
+      font-size: 96px;
+      line-height: 0.85;
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 48px;
+      line-height: 1;
+    }
+
+    h2:last-child {
+      margin-top: 50px;
+      margin-bottom: 200px;
+    }
+
+    h3 {
+      color: $disco-white;
+      font-size: 72px;
+      line-height: 1;
+      padding-right: 150px;
+    }
+
+    p {
+      font-size: 24px;
+      line-height: 1.25;
+      margin-bottom: 50px;
+    }
+  }
+
+  .news {
+    margin-top: 100px;
+    margin-bottom: 100px;
+
+    h2 {
+      font-size: 72px;
+      color: $disco-white;
+      margin-bottom: 40px;
+    }
+
+    .card {
+
+      .card-title {
+        font-size: 24px;
+        line-height: 30px;
+        color: $disco-white;
+      }
+
+      .card-subtitle {
+        font-size: 11px;
+        margin: 15px 0;
+      }
+
+      .card-text {
+        font-size: 14px;
+        line-height: 18px;
+      }
+    }
+  }
+
+  .speakers,
+  .programme {
+    .card {
+      .card-img-top {
+        height: 286px;
+        object-fit: cover;
+      }
+
+      .card-title {
+        font-size: 32px;
+        color: $disco-white;
+        line-height: 34px; 
+      }
+
+      .card-text {
+        font-size: 18px;
+        line-height: 22px;
+      }
+    }
+  }
+
+  .programme-day {
+    border: 1px solid $disco-white;
+    background-color: $disco-black;
+
+    h3 {
+      font-size: 72px;
+      margin: 40px 0;
+      color: $disco-white;
+    }
+
+    p {
+      font-size: 24px;
+      line-height: 27px;
+      color: $disco-white;
+    }
+
+    .programme-day-column {
+      flex-grow: 1;
+      flex-basis: 50%;
+
+      &:first-child {
+        border-right: 1px solid $disco-white;
+      }
+
+      & > div:not(:last-child) {
+        border-bottom: 1px solid $disco-white;
+      }
+    }
+
+    .programme-day-column-row {
+      & > div {
+        flex-grow: 1;
+        flex-basis: 50%;
+        padding: 16px;
+
+        span:first-child {
+          font-size: 14px;
+          line-height: 18px;
+        }
+
+        span:last-child {
+          font-size: 24px;
+          line-height: 27px;
+          color: $disco-white;
+        }
+
+        &:first-child {
+          border-right: 1px solid $disco-white;
+          padding-left: 40px;
+
+          &::before {
+            content: "";
+          }
+        }
+      }
+    }
+  }
+
+  .location {
+    h2 {
+      font-size: 72px;
+      color: $disco-white;
+    }
+  }
+
+  .scholarship {
+    background-color: $disco-white;
+    padding-top: 100px;
+    padding-bottom: 100px;
+
+    h2 {
+      font-size: 72px;
+      line-height: 66px;
+      color: $disco-black;
+      margin-bottom: 40px;
+    }
+
+    p {
+      font-size: 24px;
+      line-height: 27px;
+      color: $disco-black;
+      margin-bottom: 40px;
+    }
+  }
+
+  .about {
+    padding-top: 100px;
+    padding-bottom: 100px;
+
+    h2 {
+      font-size: 72px;
+      color: $disco-white;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    p {
+      font-size: 24px;
+      line-height: 27px;
+      color: $disco-white;
+    }
+  }
+
+  .organized-by {
+    background-color: $disco-pink;
+
+    .white-pill {
+      background-color: $disco-white;
+      padding-top: 60px;
+      padding-bottom: 60px;
+
+      h2 {
+        font-size: 48px;
+        color: $disco-black;
+        line-height: 48px;
+        margin-bottom: 0;
+      }
+
+      p {
+        font-size: 24px;
+        color: $disco-black;
+        line-height: 27px;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .supporters {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+}
+
+.news-page {
+  h1 {
+    font-size: 72px;
+    line-height: 66px;
+    color: $disco-white;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 24px;
+    line-height: 27px; 
+    color: $disco-white;
+  }
+}
+
+.location-page {
+
+}
