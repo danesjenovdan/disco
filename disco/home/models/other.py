@@ -43,7 +43,7 @@ class ProgrammeDay(models.Model):
     date = models.DateField()
     timeslots = StreamField([
         ("timeslot", blocks.StructBlock([
-            ("time", blocks.CharBlock()),
+            ("time", blocks.CharBlock(required=False)),
             ("panels_list", blocks.StreamBlock([
                 ("panel", blocks.StructBlock([
                     ("name", blocks.CharBlock()),

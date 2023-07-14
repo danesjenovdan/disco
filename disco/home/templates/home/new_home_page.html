@@ -88,7 +88,7 @@
             <div class="social-media">
               {% for sm in speaker.social_media %}
               <a href="{{ sm.value}}" target="_blank" class="d-flex align-items-center justify-content-center">
-                <img src="{% static '' %}img/social/{{ sm.block_type }}.svg" class="img-fluid" />
+                <img src="/static/img/social/{{ sm.block_type }}.svg" class="img-fluid" />
               </a>
               {% endfor %}
             </div>
@@ -247,7 +247,7 @@
               <div class="row justify-content-center">
                 <div class="col-9">
                   <div class="row">
-                    <div class="col-6">
+                    <div class="col-6 d-flex align-items-center">
                       <h2>{{ page.organized_by_title }}</h2>
                     </div>
                     <div class="col-6 d-flex align-items-center">
