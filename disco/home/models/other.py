@@ -27,6 +27,13 @@ class Speaker(models.Model):
         return self.name
 
 
+def get_speakers():
+    try:
+        return [(speaker.id, speaker.name) for speaker in Speaker.objects.all()]
+    except:
+        return []
+
+
 class ProgrammeDay(models.Model):
     title = models.TextField()
     location = models.TextField()
