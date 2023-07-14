@@ -21,6 +21,7 @@ class Speaker(models.Model):
         ("podcast", blocks.URLBlock()),
         ("linkedin", blocks.URLBlock()),
         ("youtube", blocks.URLBlock()),
+        ("tiktok", blocks.URLBlock()),
     ], use_json_field=True, blank=True, max_num=3)
     exposed = models.BooleanField(default=False)
 
