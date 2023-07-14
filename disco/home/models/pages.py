@@ -126,14 +126,15 @@ class NewHomePage(Page):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
 
-        context["exposed_news"] = NewsPage.objects.live().child_of(self).order_by("-first_published_at")[:4]
         context["programme"] = ProgrammeDay.objects.all()
         context["speakers"] = Speaker.objects.filter(id__in=[speaker.value for speaker in self.exposed_speakers])
 
         try:
             news_list = NewsListPage.objects.first()
+            exposed_news = NewsPage.objects.live().child_of(news_list).order_by("-first_published_at")[:4]
         except:
             news_list = None
+            exposed_news = None
 
         try:
             speakers_and_programme_page = SpeakersAndProgrammePage.objects.first()
@@ -146,6 +147,7 @@ class NewHomePage(Page):
             location_page = None
         
         context["news_list"] = news_list
+        context["exposed_news"] = exposed_news
         context["speakers_and_programme_page"] = speakers_and_programme_page
         context["location_page"] = location_page
 
