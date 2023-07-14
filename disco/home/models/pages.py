@@ -8,7 +8,7 @@ from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.images.blocks import ImageChooserBlock
 
 from .other import ProgrammeDay, Speaker
-from ..forms import IndividualForm
+
 
 class NewsListPage(Page):
 
@@ -166,8 +166,8 @@ class LocationPage(Page):
     ]
 
 
-class ThankYouForRegistrationPage(Page):
-    pass
+# class ThankYouForRegistrationPage(Page):
+#     pass
 
 
 class NewsletterSignupPage(Page):
