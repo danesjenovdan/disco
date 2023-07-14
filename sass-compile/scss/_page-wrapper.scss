@@ -226,6 +226,10 @@ hr.divider {
     .card {
       text-decoration: none;
 
+      .card-img-top {
+        height: 149px;
+        object-fit: cover;
+      }
 
       .card-title {
         font-size: 24px;
@@ -248,6 +252,8 @@ hr.divider {
   .speakers,
   .programme {
     .card {
+      text-decoration: none;
+      
       .card-img-top {
         height: 286px;
         object-fit: cover;
