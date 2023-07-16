@@ -1,0 +1,58 @@
+{% extends "new_base.html" %}
+{% load static wagtailimages_tags %}
+
+{% block body_class %}bg-grid register-page{% endblock %}
+
+{% block header %}
+  {% include 'home/partials/new_header.html' %}
+{% endblock header %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-7">
+      <h1 class="mt-7 mb-5">Registration</h1>
+      <p>The deadline for registration is 30 September 2023. To secure your spot, complete the registration process by this date. The registration fee is €50 plus applicable VAT.</p>
+      <p>Together with the regional Embassies of the Kingdom of the Netherlands, we are also providing 36 Powered by The Netherlands Scholarships to select participants from 12 countries. They cover registration fees for the conference and accommodation in Ljubljana for the duration of the event.</p>
+      <p>To register now, please input your information below. We need it to process your registration and bill you for the registration fee. When you complete the registration process, you will receive a confirmation email with the billing information. Your registration will be considered complete when the payment for your registration fee is processed. We will send you a final confirmation email when that happens.</p>
+    </div>
+  </div>
+
+  <div class="row my-5">
+    <div class="col-12">
+      <hr class="divider" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-7">
+      <p class="big">Do you want to register as an individual or as part of an organisation? As an organisation, you can register several people, but please note that if you want one of your members to apply for the scholarship, they need to do that as an individual.</p>
+      <div class="my-5">
+        <div id="id_register_type" class="d-flex">
+          <div class="form-check me-7">
+            <input type="radio" name="register_type" value="individual" required="" id="id_register_type_0" class="form-check-input" {% if submitted_form == "individual" %}checked{% endif %}>
+            <label for="id_register_type_0" class="form-check-label">
+              Individual
+            </label>
+          </div>
+          <div class="form-check">
+            <input type="radio" name="register_type" value="organisation" required="" id="id_register_type_1" class="form-check-input" {% if submitted_form == "organisation" %}checked{% endif %}>
+            <label for="id_register_type_1" class="form-check-label">
+              Organisation
+            </label>
+          </div>
+        </div>
+      </div>
+
+      {% include 'home/partials/individual_registration_form.html' %}
+
+      {% include 'home/partials/organisation_registration_form.html' %}
+
+    </div>
+  </div>
+</div>
+
+<script type="module" src="{% static 'js/registration.js' %}"></script>
+
+{% endblock content %}
