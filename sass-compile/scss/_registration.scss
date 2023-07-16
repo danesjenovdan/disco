@@ -1,0 +1,73 @@
+.register-page {
+    main {
+        padding-bottom: 100px;
+    }
+
+    h1 {
+        font-size: 72px;
+        line-height: 66px;
+    }
+
+    h3 {
+        font-size: 32px;
+        line-height: 34px;
+    }
+
+    p {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    h1, p {
+        color: $disco-white;
+    }
+
+    p.small {
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    p.big, #id_register_type label {
+        font-size: 24px;
+        line-height: 27px;
+        color: $disco-white;   
+    }
+
+    form {
+        label, input, .form-text {
+            font-size: 18px;
+            line-height: 22px;
+            margin-bottom: 4px;
+        }
+
+        input[type=text],
+        input[type=email],
+        select,
+        select:focus,
+        textarea,
+        textarea:focus {
+            background-color: $disco-white;
+            color: $disco-black;
+            padding: 20px;
+        }
+
+        textarea {
+            border-radius: 20px; 
+        }
+
+        .divider-pink {
+            border-color: $disco-pink;
+            opacity: 1;
+            margin: 70px 0;
+        }
+
+        #scholarship-form-section {
+            border: 2px solid $disco-pink;
+            padding: 30px;
+        }
+
+        .error {
+            color: $disco-pink;
+        }
+    }
+}

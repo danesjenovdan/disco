@@ -1,6 +1,8 @@
 from django.db import models
 from wagtail import blocks
 from wagtail.fields import StreamField
+from django_countries.fields import CountryField
+
 
 
 class Speaker(models.Model):
@@ -61,13 +63,17 @@ class ProgrammeDay(models.Model):
 class Registered(models.Model):
     registered_at = models.DateTimeField(auto_now_add=True)
     name = models.TextField()
-    email = models.URLField()
-    country = models.TextField(choices=[
-        ("slovenia", "Slovenia"),
-        ("italy", "Italy"),
-        ("croatia", "Croatia")
+    email = models.EmailField()
+    organisation_name = models.TextField(blank=True)
+    country = CountryField(blank_label="")
+    registration_fee = models.IntegerField(null=True, blank=True, choices=[
+        (50, "€50 plus VAT (€61 total)"),
+        (25, "€25 plus VAT or €30,50 in total (for those unable to afford the standard fee)"),
+        (75, "€75 plus VAT or €91,50 in total (for those who want to support participants with subsidised fee)")
     ])
-    registration_fee = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Individual(Registered):
@@ -81,12 +87,18 @@ class Individual(Registered):
 
 class Organisation(Registered):
     address = models.TextField()
-    vat_id = models.TextField()
+    vat_id = models.TextField(blank=True)
     vat_registered = models.BooleanField(default=False)
     has_paid = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.organisation_name
 
 
 class IndividualByOrganisation(models.Model):
     name = models.TextField()
-    email = models.URLField()
+    email = models.EmailField()
     organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE, related_name="+")
+
+    def __str__(self):
+        return self.name

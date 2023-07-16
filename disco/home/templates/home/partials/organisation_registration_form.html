@@ -1,0 +1,148 @@
+<form action="{% url 'registration' %}" method="post" id="organisation_form" class="{% if submitted_form != 'organisation' %}d-none{% endif %}">
+    {% csrf_token %}
+
+      <hr class="divider-pink" />
+
+      <h3 class="mb-5">Participants</h3>
+
+      <!-- ORGANISATION NAME -->
+      <div class="mb-5">
+        <label for="{{ organisation_form.organisation_name.id_for_label }}" class="form-label">Organisation name</label>
+        {{ organisation_form.organisation_name }}
+        {% if organisation_form.organisation_name.errors %}
+        <p class="error">{{ organisation_form.organisation_name.errors }}</p>
+        {% endif %}
+      </div>
+
+      <!-- NAME -->
+      <div class="mb-5">
+        <label for="{{ organisation_form.name.id_for_label }}" class="form-label">Your name and surname</label>
+        {{ organisation_form.name }}
+        {% if organisation_form.name.errors %}
+        <p class="error">{{ organisation_form.name.errors }}</p>
+        {% endif %}
+      </div>
+
+      <!-- EMAIL -->
+      <div class="mb-3">
+        <label for="{{ organisation_form.email.id_for_label }}" class="form-label">Your email address</label>
+        {{ organisation_form.email }}
+        {% if organisation_form.email.errors %}
+        <p class="error">{{ organisation_form.email.errors }}</p>
+        {% endif %}
+      </div>
+
+      <!-- ALSO ATTENDING -->
+      <div class="mt-3 mb-5 form-check">
+        <input type="checkbox" name="organisation-also_attending" id="id_organisation-also_attending" class="form-check-input">
+        <label for="id_organisation-also_attending" class="form-check-label">I am also attending the conference.</label>
+        {% if organisation_form.also_attending.errors %}
+        <p class="error">{{ organisation_form.also_attending.errors }}</p>
+        {% endif %}
+      </div>
+
+      <!-- PARTICIPANTS -->
+      <div id="participants-form" class="my-6 mx-6">
+        {{ formset.management_form }}
+        {% for form in formset %}
+        <div class="participant">
+          {{ form.as_div }}
+        </div>
+        {% endfor %}
+        <button id="add-participant" type="button" class="btn btn-primary">Add more participants</button>
+      </div>
+
+      <hr class="divider-pink" />
+
+      <h3 class="mb-5">Organisation info</h3>
+
+      <!-- ORGANISATION ADDRESS -->
+      <div class="mb-5">
+        <label for="{{ organisation_form.address.id_for_label }}" class="form-label">Organisation address</label>
+        {{ organisation_form.address }}
+        {% if organisation_form.address.errors %}
+        <p class="error">{{ organisation_form.address.errors }}</p>
+        {% endif %}
+      </div>
+
+      <!-- ORGANISATION VAT -->
+      <div class="mb-3">
+        <label for="{{ organisation_form.vat_id.id_for_label }}" class="form-label">Valid VAT ID or other identification number</label>
+        {{ organisation_form.vat_id }}
+        {% if organisation_form.vat_id.errors %}
+        <p class="error">{{ organisation_form.vat_id.errors }}</p>
+        {% endif %}
+      </div>
+
+      <!-- VAT REGISTERED -->
+      <div class="mt-3 mb-5 form-check">
+        <input type="checkbox" name="organisation-vat_registered" id="id_organisation-vat_registered" class="form-check-input">
+        <label for="id_organisation-vat_registered" class="form-check-label">I confirm my organisation is VAT registered.</label>
+        {% if organisation_form.vat_registered.errors %}
+        <p class="error">{{ organisation_form.vat_registered.errors }}</p>
+        {% endif %}
+      </div>
+
+      <!-- COUNTRY  -->
+      <div class="mb-5">
+        <label for="{{ organisation_form.country.id_for_label }}" class="form-label">Country</label>
+        {{ organisation_form.country }}
+        {% if organisation_form.country.errors %}
+        <p class="error">{{ organisation_form.country.errors }}</p>
+        {% endif %}
+      </div>
+
+      <hr class="divider-pink" />
+
+      <h3 class="mb-5">Fee</h3>
+
+      <!-- REGISTRATION FEE -->
+      <div class="mb-7">
+        <div class="form-text mb-2">Choose your registration fee.</div>
+        <p>Registration fee for DISCO is €50 plus VAT.</p>
+        <p>If the standard registration fee is not affordable to you, you can choose the subsidised price of €25 plus VAT. For those who are able to contribute more and support participants with the subsidised fee, we encourage you to select the solidarity price of €75 plus VAT.</p>
+        <p>Note that if you applied for the scholarship, you won't be billed until after the decision regarding the status of your application has been made.</p>
+      </div>
+      
+      <div class="mb-3">
+
+        <div class="form-check my-3">
+          <input type="radio" name="organisation-registration_fee" value="50" id="id_organisation-registration_fee_1" class="form-check-input" checked>
+          <label for="id_organisation-registration_fee_1" class="form-check-label">
+            <p class="m-0">€50 plus VAT (€61 total)</p>
+          </label>
+        </div>
+
+        <hr class="w-50" />
+        
+        <div class="form-check my-3">
+          <input type="radio" name="organisation-registration_fee" value="25" id="id_organisation-registration_fee_2" class="form-check-input">
+          <label for="id_organisation-registration_fee_2" class="form-check-label"> 
+            <p class="m-0">€25 plus VAT or €30,50 in total (for those unable to afford the standard fee)</p>
+          </label>
+        </div>
+        
+        <div class="form-check my-3">
+          <input type="radio" name="organisation-registration_fee" value="75" id="id_organisation-registration_fee_3" class="form-check-input">
+          <label for="id_organisation-registration_fee_3" class="form-check-label">
+            <p class="m-0">€75 plus VAT or €91,50 in total (for those who want to support participants with subsidised fee)</p>
+          </label>
+        </div>
+
+        {% if organisation_form.registration_fee.errors %}
+        <p class="error">{{ organisation_form.registration_fee.errors }}</p>
+        {% endif %}
+      </div>    
+    
+    
+    <!-- newsletter -->
+    <div id="newsletter-section" class="mt-7 mb-3 form-check">
+        <input type="checkbox" name="organisation-newsletter" id="{{ organisation_form.newsletter.id_for_label }}" class="form-check-input">
+        <label for="{{ organisation_form.newsletter.id_for_label }}" class="form-check-label">
+            <p class="small">Yes, I want to receive updates about the DISCO Slovenia conference and be among the first to know when registration opens. Danes je nov dan will store my email and delete it whenever I ask them in accordance with the organisation’s privacy policy.</p>
+        </label>
+    </div>
+
+    <input type="submit" name="organisation-form" class="btn btn-primary btn-lg" value="Register now" />
+  
+  </form>

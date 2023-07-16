@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_countries",
 ]
 
 MIDDLEWARE = [
@@ -171,3 +172,7 @@ WAGTAILSEARCH_BACKENDS = {
 WAGTAILADMIN_BASE_URL = "http://example.com"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+COUNTRIES_OVERRIDE={
+    "XK": {"name": "Kosovo", "ioc_code": "KOS"},
+}

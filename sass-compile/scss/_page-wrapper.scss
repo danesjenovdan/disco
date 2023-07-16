@@ -522,7 +522,7 @@ hr.divider {
     padding-bottom: 100px;
   }
 
-  footer {
+  footer > .container {
     background-color: $disco-black;
     padding: 40px;
 
@@ -608,3 +608,26 @@ hr.divider {
     }
   }
 }
+
+.thank-you-page {
+  h1 {
+    font-size: 36px;
+    line-height: 1;
+    color: $disco-white;
+
+    @include media-breakpoint-up(md) {
+      font-size: 48px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      font-size: 72px;
+    }
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 22px;
+    color: $disco-white;
+  }
+}
+

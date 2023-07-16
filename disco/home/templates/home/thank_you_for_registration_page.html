@@ -1,0 +1,21 @@
+{% extends "new_base.html" %}
+{% load static wagtailimages_tags %}
+
+{% block body_class %}bg-grid{% endblock %}
+
+{% block header %}
+  {% include 'home/partials/new_header.html' %}
+{% endblock header %}
+
+{% block content %}
+
+<div class="container thank-you-page">
+  <div class="row my-5">
+    <div class="col-12 col-lg-8">
+      <h1 class="mb-4">Thank you for registering for DISCO Slovenia 2023.</h1>
+      <p>We’ll send the invoice to the email address you provided (unless for any team members who applied for The Netherlands Scholarship programme in which case they will be billed when we select the beneficiaries). The registration will be confirmed upon receipt of payment. When that happens, both you and the participants will receive a confirmation email.</p>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
