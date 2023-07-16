@@ -18,7 +18,7 @@
   </div>
 
   <div class="row justify-content-center">
-    <div class="col-8 rich-text">
+    <div class="col-12 col-lg-8 rich-text">
       {{ page.description|safe }}
     </div>
   </div>
@@ -30,7 +30,7 @@
   </div>
 
   <div class="row d-flex justify-content-center my-4">
-    <div class="col-10 text-center rich-text">
+    <div class="col-12 col-md-10 text-center rich-text">
       <h2 class="mb-5">Accomodation</h2>
       <p>{{ page.accommodation_description }}</p>
     </div>
@@ -38,7 +38,7 @@
 
   <div class="row justify-content-center my-7">
     {% for accommodation in page.accommodation_options %}
-      <div class="col-3">
+      <div class="col-12 col-md-6 col-lg-3">
         <a href="{{ accommodation.value.link }}" target="_blank" class="card">
           {% image accommodation.value.image original class="card-img-top img-fluid" %}
           <div class="card-body px-0">

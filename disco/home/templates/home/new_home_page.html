@@ -11,7 +11,7 @@
 
 <div class="container hero mb-5">
   <div class="row">
-    <div class="col-6">
+    <div class="col-12 col-lg-6">
       <h1>
         DISCO<br/>Slovenia
       </h1>
@@ -22,7 +22,7 @@
         24–26 October 2023 <br />Ljubljana, Slovenia
       </h2>
     </div>
-    <div class="col-6 d-flex flex-column justify-content-end">
+    <div class="col-12 col-lg-6 d-flex flex-column justify-content-end">
       <h3>
         {{ page.subtitle }}
       </h3>
@@ -43,7 +43,7 @@
   </div>
   <div class="row">
     {% for news in exposed_news %}
-    <div class="col-3">
+    <div class="col-12 col-md-6 col-lg-3">
       <a href="{% pageurl news %}" class="card">
         {% image news.image original class="card-img-top img-fluid" %}
         <div class="card-body px-0">
@@ -78,7 +78,7 @@
   <div class="container">
     <div class="row my-7">
       {% for speaker in speakers %}
-      <div class="col-3">
+      <div class="col-12 col-md-6 col-lg-3">
         <div class="card">
           {% image speaker.image original class="card-img-top" %}
           <div class="card-body px-0">
@@ -97,7 +97,7 @@
       </div>
       {% endfor %}
       {% if page.show_tba %}
-      <div class="col-3">
+      <div class="col-12 col-md-6 col-lg-3">
         <div class="card">
           <img src="{% static 'img/speaker-TBA.jpg' %}" class="card-img-top" />
           <div class="card-body px-0">
@@ -169,7 +169,7 @@
 
 <div id="location" class="container location">
   <div class="row">
-    <div class="col-12 d-flex align-items-center my-5">
+    <div class="col-12 d-md-flex align-items-center my-5">
       <h2>Location</h2>
       {% if location_page %}
       <a href="{% pageurl location_page %}" class="mx-5 btn btn-primary">Venue, accommodation & logistics</a>
@@ -184,10 +184,10 @@
 <div id="scholarship" class="container-fluid scholarship">
   <div class="container">
     <div class="row">
-      <div class="col-6">
+      <div class="col-12 col-lg-6">
         <img src="{% static 'img/scholarship.png' %}" class="img-fluid" />
       </div>
-      <div class="col-6">
+      <div class="col-12 col-lg-6">
         <h2>{{ page.scholarship_title }}</h2>
         <p>{{ page.scholarship_description }}</p>
         <div>
@@ -247,10 +247,10 @@
               <div class="row justify-content-center">
                 <div class="col-9">
                   <div class="row">
-                    <div class="col-6 d-flex align-items-center">
+                    <div class="col-12 col-lg-6 d-flex align-items-center">
                       <h2>{{ page.organized_by_title }}</h2>
                     </div>
-                    <div class="col-6 d-flex align-items-center">
+                    <div class="col-12 col-lg-6 d-flex align-items-center">
                       <p>{{ page.organized_by_text }}</p>
                     </div>
                   </div>
@@ -268,17 +268,17 @@
     </div>
   </div>
   <div class="row align-items-center mb-6">
-    <div class="col-3">
+    <div class="col-12 col-md-3">
       <h4>Supported by</h4>
     </div>
-    <div class="col-9">
+    <div class="col-12 col-md-9">
       <div class="logos-box support-nl d-flex justify-content-center align-items-center">
         <img src="{% static 'img/logos/nl.svg' %}" class="logo" />
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="offset-3 col-9">
+    <div class="offset-md-3 col-md-9">
       <div class="logos-box d-flex justify-content-between align-items-center">
         <img src="{% static 'img/logos/acf-logo.svg' %}" class="logo" />
         <div class="flex-grow-1 d-flex justify-content-end align-items-center">

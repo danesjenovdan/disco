@@ -11,23 +11,23 @@
 
 <div class="container news-page">
   <div class="row my-5">
-    <div class="col-6 p-6">
+    <div class="col-12 col-lg-6 py-6 p-lg-6">
       {% image page.image original class="img-fluid" %}
     </div>
-    <div class="col-6 p-6 d-flex flex-column justify-content-center">
+    <div class="col-12 col-lg-6 py-6 p-lg-6 d-flex flex-column justify-content-center">
       <h1>{{ page.title }}</h1>
       <p class="subtitle">{{ page.short_description }}</p>
     </div>
   </div>
 
   <div class="row justify-content-center">
-    <div class="col-8 rich-text">
+    <div class="col-12 col-lg-8 rich-text">
       {{ page.body|safe }}
     </div>
   </div>
 
   <div class="row my-7 justify-content-center">
-    <div class="col-8">
+    <div class="col-12 col-lg-8">
       <a href="/">Nazaj</a>
     </div>
   </div>
