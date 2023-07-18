@@ -4,12 +4,12 @@
   padding: 50px 0;
 
   h2 {
-      font-size: 48px;
-      margin-bottom: 20px;
+    font-size: 48px;
+    margin-bottom: 20px;
   }
 
   p {
-      font-size: 18px;
+    font-size: 18px;
   }
 
   form {
@@ -50,7 +50,6 @@
 
     .subscribe-group {
       position: relative;
-      max-width: 596px;
 
       input {
         padding: 17px 24px;
@@ -106,15 +105,16 @@
       }
 
       .form-check-label {
-        max-width: 440px;
+        max-width: 90%;
       }
     }
   }
 }
 
 .rich-text {
-
-  h2, h3, h4 {
+  h2,
+  h3,
+  h4 {
     color: $disco-white;
 
     &:not(:first-child) {
@@ -158,9 +158,10 @@ hr.divider {
     display: block;
     width: 46px;
     height: 46px;
-    background-image: url("/static/img/disco-logo.svg");
+    background-image: url("/static/img/disco-logo.svg"), url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><circle fill='%23ff50de' cx='5' cy='5' r='5'/></svg>");
+    background-position: center center;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: contain, 25%;
     position: absolute;
   }
 
@@ -189,6 +190,22 @@ hr.divider {
     content: "→";
     padding-left: 5px;
   }
+
+  &.back {
+    &::before {
+      content: "←";
+      padding-right: 5px;
+    }
+
+    &::after {
+      content: none;
+      padding-left: 0;
+    }
+  }
+
+  &:hover {
+    color: $disco-grey;
+  }
 }
 
 .logos-box {
@@ -209,9 +226,33 @@ hr.divider {
   }
 }
 
-.page-wrapper {  
+.sponsor-logos {
+  display: flex;
+  gap: 22px;
+
+  .sponsor-logo-box {
+    width: 102px;
+    height: 90px;
+    background: $disco-white;
+    border: 1px solid $disco-grey;
+    border-radius: 20px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 100%;
+      border-radius: 5px;
+    }
+  }
+}
+
+
+.page-wrapper {
   .hero {
-    h1, h2, h3 {
+    h1,
+    h2,
+    h3 {
       line-height: 0.9;
     }
 
@@ -219,7 +260,7 @@ hr.divider {
       color: $disco-white;
       font-size: 96px;
       line-height: 0.85;
-      margin-top: 50px;
+      margin-top: 80px;
       margin-bottom: 20px;
     }
 
@@ -248,8 +289,8 @@ hr.divider {
   }
 
   .news {
-    margin-top: 100px;
-    margin-bottom: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
 
     h2 {
       font-size: 72px;
@@ -292,6 +333,9 @@ hr.divider {
 
   .speakers,
   .programme {
+    padding-top: 100px;
+    padding-bottom: 100px;
+
     .card {
       text-decoration: none;
       background-color: transparent;
@@ -304,7 +348,7 @@ hr.divider {
       .card-title {
         font-size: 32px;
         color: $disco-white;
-        line-height: 34px; 
+        line-height: 34px;
       }
 
       .card-text {
@@ -338,6 +382,7 @@ hr.divider {
   }
 
   .programme-day {
+    position: relative;
     border: 1px solid $disco-white;
     background-color: $disco-black;
 
@@ -351,7 +396,9 @@ hr.divider {
       line-height: 34px;
     }
 
-    h3, h4, h5 {
+    h3,
+    h4,
+    h5 {
       color: $disco-white;
     }
 
@@ -359,6 +406,18 @@ hr.divider {
       font-size: 24px;
       line-height: 27px;
       color: $disco-white;
+    }
+
+    .programme-day-date {
+      position: absolute;
+      left: 0;
+      top: -1em;
+      padding: 4px 24px;
+      background: $disco-white;
+      border-radius: 1rem 1rem 0 0;
+      font-size: 24px;
+      transform-origin: bottom right;
+      transform: translateX(-100%) rotate(-90deg);
     }
 
     .programme-day-column {
@@ -371,6 +430,22 @@ hr.divider {
 
       & > div:not(:last-child) {
         border-bottom: 1px solid $disco-white;
+      }
+
+      .btn-primary {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 13px 33px;
+        font-size: 24px;
+        width: 100%;
+        max-width: 533px;
+
+        svg {
+          width: 19px;
+          height: 14px;
+          margin-left: 1rem;
+        }
       }
     }
 
@@ -403,7 +478,6 @@ hr.divider {
 
         &:first-child {
           border-right: 1px solid $disco-white;
-          padding-left: 40px;
 
           &::before {
             content: "";
@@ -415,8 +489,8 @@ hr.divider {
     .panel {
       border-bottom: none !important;
       padding: 20px;
-      border-radius: 25px; 
-      
+      border-radius: 25px;
+
       &:nth-child(odd) {
         background-color: $disco-pink;
       }
@@ -441,10 +515,11 @@ hr.divider {
         margin-bottom: 0;
       }
 
-      h5, h6 a, p {
+      h5,
+      h6 a,
+      p {
         color: $disco-black;
       }
-      
     }
   }
 
@@ -452,6 +527,20 @@ hr.divider {
     h2 {
       font-size: 72px;
       color: $disco-white;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 13px 33px;
+      font-size: 24px;
+
+      svg {
+        width: 19px;
+        height: 14px;
+        margin-left: 1rem;
+      }
     }
   }
 
@@ -472,6 +561,20 @@ hr.divider {
       line-height: 27px;
       color: $disco-black;
       margin-bottom: 40px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 13px 33px;
+      font-size: 24px;
+
+      svg {
+        width: 19px;
+        height: 14px;
+        margin-left: 1rem;
+      }
     }
   }
 
@@ -535,6 +638,10 @@ hr.divider {
       a {
         color: $disco-white;
         text-decoration: underline;
+
+        &:hover {
+          color: $disco-grey;
+        }
       }
     }
 
@@ -560,6 +667,10 @@ hr.divider {
         line-height: 18px;
         color: $disco-white;
         text-decoration: underline;
+
+        &:hover {
+          color: $disco-grey;
+        }
       }
     }
   }
@@ -575,7 +686,7 @@ hr.divider {
 
   p {
     font-size: 24px;
-    line-height: 27px; 
+    line-height: 27px;
     color: $disco-white;
   }
 }
@@ -584,14 +695,14 @@ hr.divider {
   .card {
     text-decoration: none;
     background-color: transparent;
-    
+
     .card-img-top {
       height: 149px;
       object-fit: cover;
     }
 
     .card-title {
-      font-size: 24px; 
+      font-size: 24px;
       color: $disco-white;
       line-height: 30px;
     }
@@ -631,3 +742,54 @@ hr.divider {
   }
 }
 
+.register-page {
+  .form-check {
+    padding-left: 40px;
+
+    input[type="radio"].form-check-input {
+      width: 32px;
+      height: 32px;
+      margin-top: 0;
+      margin-left: -40px;
+    }
+
+    input[type="checkbox"].form-check-input {
+      width: 24px;
+      height: 24px;
+      margin-top: 4px;
+      margin-left: -32px;
+      background-color: $body-bg;
+      border-color: $white;
+
+      &:checked {
+        --bs-form-check-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'><path fill='%23fff' d='M116.47 38.05 97.63 21.91 51.51 71.5 28.06 50.74 11.53 69.19l41.9 37.28z'/></svg>");
+        background-size: 81%;
+      }
+    }
+
+    .form-check-label {
+      margin-top: 5px;
+    }
+  }
+
+  select.form-control {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 18 14'><path fill='%23333' stroke='%23333' d='M16.75 1 9 13.07 1.25 1h15.5Z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: center right 20px;
+    background-size: 20px 18px;
+  }
+
+  button[type="submit"].btn-primary {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 13px 33px;
+    font-size: 24px;
+
+    svg {
+      width: 19px;
+      height: 14px;
+      margin-left: 1rem;
+    }
+  }
+}
