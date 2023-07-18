@@ -89,12 +89,13 @@ class Registered(models.Model):
         return self.name
 
     def save_to_mautic(self, tags):
-        if settings.DEBUG:
+        print('skip save to mautic', settings.DEBUG)
+        if not settings.DEBUG:
             response, response_status = mautic_api.createContact(email=self.email, tags=tags)
             if response_status == 200:
                 self.mautic_id = response['contact']['id']
                 self.save()
-                mautic_api.addContactToASegment(segment_id=settings.REGISTERATION_SEGMENT, contact_id=self.mautic_id)
+                mautic_api.addContactToASegment(segment_id=settings.REGISTRATION_SEGMENT, contact_id=self.mautic_id)
 
 
 class Individual(Registered):
