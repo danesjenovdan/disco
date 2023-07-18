@@ -37,6 +37,13 @@ if os.getenv("DJANGO_ENABLE_S3", False):
     AWS_S3_SIGNATURE_VERSION = os.getenv("DJANGO_AWS_S3_SIGNATURE_VERSION", "s3v4")
     AWS_S3_FILE_OVERWRITE = False  # don't overwrite files if uploaded with same file name
 
+MAUTIC_URL = os.getenv('MAUTIC_URL', 'https://localhost/api/')
+MAUTIC_USER = os.getenv('MAUTIC_USER', 'apiuser')
+MAUTIC_PASS = os.getenv('MAUTIC_PASSWORD', 'apigeslo')
+
+REGISTERATION_SEGMENT = 30
+REGISTERED_SEGMENT = 31
+
 try:
     from .local import *
 except ImportError:

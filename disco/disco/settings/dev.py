@@ -11,6 +11,12 @@ ALLOWED_HOSTS = ["*"]
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
+MAUTIC_URL = os.getenv('MAUTIC_URL', '')
+MAUTIC_USER = os.getenv('MAUTIC_USER', '')
+MAUTIC_PASS = os.getenv('MAUTIC_PASSWORD', '')
+
+REGISTERATION_SEGMENT = 30
+REGISTERED_SEGMENT = 31
 
 try:
     from .local import *
