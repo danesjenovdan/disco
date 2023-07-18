@@ -1,5 +1,5 @@
 {% extends "new_base.html" %}
-{% load static wagtailimages_tags %}
+{% load static wagtailimages_tags wagtailcore_tags %}
 
 {% block body_class %}bg-grid{% endblock %}
 
@@ -19,7 +19,7 @@
 
   <div class="row justify-content-center">
     <div class="col-12 col-lg-8 rich-text">
-      {{ page.description|safe }}
+      {{ page.description|richtext }}
     </div>
   </div>
 
