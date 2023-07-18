@@ -89,11 +89,12 @@ class Registered(models.Model):
         return self.name
 
     def save_to_mautic(self, tags):
-        response, response_status = mautic_api.createContact(email=self.email, tags=tags)
-        if response_status == 200:
-            self.mautic_id = response['contact']['id']
-            self.save()
-            mautic_api.addContactToASegment(segment_id=settings.REGISTERATION_SEGMENT, contact_id=self.mautic_id)
+        if settings.DEBUG:
+            response, response_status = mautic_api.createContact(email=self.email, tags=tags)
+            if response_status == 200:
+                self.mautic_id = response['contact']['id']
+                self.save()
+                mautic_api.addContactToASegment(segment_id=settings.REGISTERATION_SEGMENT, contact_id=self.mautic_id)
 
 
 class Individual(Registered):
@@ -106,7 +107,8 @@ class Individual(Registered):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         if self.has_paid and not self.__per_save_has_paid:
-            mautic_api.addContactToASegment(segment_id=settings.REGISTERED_SEGMENT, contact_id=self.mautic_id)
+            if not settings.DEBUG:
+                mautic_api.addContactToASegment(segment_id=settings.REGISTERED_SEGMENT, contact_id=self.mautic_id)
             self.__per_save_has_paid = self.has_paid
 
 
@@ -119,7 +121,7 @@ class Organisation(Registered):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         if self.has_paid and not self.__per_save_has_paid:
-            if self.is_participant:
+            if self.is_participant and not settings.DEBUG:
                 mautic_api.addContactToASegment(segment_id=settings.REGISTERED_SEGMENT, contact_id=self.mautic_id)
             for individual in self.individuals.all():
                 individual.save_to_mautic_as_participant()
@@ -143,7 +145,8 @@ class IndividualByOrganisation(models.Model):
         if response_status == 200:
             self.mautic_id = response['contact']['id']
             self.save()
-            mautic_api.addContactToASegment(segment_id=settings.REGISTERED_SEGMENT, contact_id=self.mautic_id)
+            if not settings.DEBUG:
+                mautic_api.addContactToASegment(segment_id=settings.REGISTERED_SEGMENT, contact_id=self.mautic_id)
 
 
 # signals

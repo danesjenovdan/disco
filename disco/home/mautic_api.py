@@ -61,7 +61,7 @@ class MauticApi(object):
             data=data
         )
 
-    def add_tag_to_contact(self, id, tag_name):
+    def addTagToContact(self, id, tag_name):
         mautic_result = self.mauticRequest(
             f'/contacts/{id}/edit',
             method='patch',
