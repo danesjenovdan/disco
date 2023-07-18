@@ -21,6 +21,13 @@
       const clone = content.parentElement.cloneNode(true);
       clone.classList.add("spinning-clone");
       banner.appendChild(clone);
+
+      // Wait for fonts to load before starting the animation otherwise chome shows a gap sometimes
+      document.fonts.ready.then(() => {
+        requestAnimationFrame(() => {
+          banner.classList.add("spin");
+        });
+      });
     });
   });
 })();

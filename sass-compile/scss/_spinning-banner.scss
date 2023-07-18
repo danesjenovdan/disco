@@ -1,62 +1,92 @@
 .spinning-banner {
-    overflow: hidden;
-    position: relative;
+  overflow: hidden;
+  position: relative;
 
-    &.pink-banner {
-        background-color: #000;
-        height: 5rem;
-        display: block;
-    }
+  &.pink-banner {
+    background-color: #000;
+    height: 5rem;
+    display: block;
+  }
 
-    &.heading-banner {
-        height: 96px;
-        margin-top: 80px;
-        margin-bottom: 40px;
-    }
+  &.heading-banner {
+    height: 96px;
+  }
 
-    .spinning-content {
-        display: inline;
-    }
+  .spinning-content {
+    display: inline;
+  }
 }
 
 .spinning-banner {
-    & > div {
-        position: absolute;
-        min-width: 100%;
-        height: 100%;
-        white-space: nowrap;
-        animation: spin 20s linear infinite;
+  &.spin > div {
+    animation: spin 20s linear infinite;
+  }
 
-        &:last-child {
-            transform: translateX(100%);
-            animation-delay: -10s;
-        }
+  & > div {
+    position: absolute;
+    min-width: 100%;
+    height: 100%;
+    white-space: nowrap;
+
+    &:last-child {
+      transform: translateX(100%);
+      animation-delay: -10s;
     }
+  }
 
-    &.pink-banner {
-        background-color: $disco-pink;
+  &.pink-banner {
+    background-color: $disco-pink;
 
-        > div {
-            color: $disco-black;
-            font-size: 32px;
-            padding-block: 20px;
-        }
+    > div {
+      color: $disco-black;
+      font-size: 32px;
+      padding-block: 20px;
     }
+  }
 
-    &.heading-banner > div {
-        h2 {
-            font-size: 96px;
-            line-height: 84px;
-            color: $disco-white;
-        }
+  &.heading-banner > div {
+    h2 {
+      font-size: 96px;
+      line-height: 84px;
+      color: $disco-white;
     }
+  }
 }
 
 @keyframes spin {
-    0% {
-        transform: translateX(100%);
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.sticky-button {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  z-index: 99999;
+  display: grid;
+  width: 178px;
+  height: 178px;
+  align-items: center;
+
+  > * {
+    margin: 0;
+    grid-area: 1 / 1;
+    transform: rotate(-7.597deg);
+  }
+
+  > p {
+    padding: 20px;
+    color: $disco-black;
+    text-align: center;
+    font-size: 24px;
+    text-decoration-line: underline;
+
+    a {
+      color: inherit;
     }
-    100% {
-        transform: translateX(-100%);
-    }
+  }
 }
