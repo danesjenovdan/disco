@@ -18,6 +18,9 @@ MAUTIC_PASS = os.getenv('MAUTIC_PASSWORD', '')
 REGISTRATION_SEGMENT = 30
 REGISTERED_SEGMENT = 31
 
+PODPRI_URL = os.getenv("PODPRI_URL", "https://localhost:8888/api/subscribe/")
+SEGMENT_ID = os.getenv("SEGMENT_ID", 5)
+
 try:
     from .local import *
 except ImportError:

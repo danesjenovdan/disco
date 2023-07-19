@@ -1,10 +1,12 @@
 from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
 from django.forms import formset_factory
-
+from django.conf import settings
 
 from .forms import IndividualForm, OrganisationForm, IndividualByOrganisationForm
 from .models import Individual, Organisation, IndividualByOrganisation
+
+import requests
 
 
 class ConfirmEmailView(TemplateView):
@@ -24,13 +26,13 @@ class RegistrationView(TemplateView):
 
         IndividualByOrganisationFormSet = formset_factory(IndividualByOrganisationForm, extra=1)
         formset = IndividualByOrganisationFormSet()
-        
+
         return render(request, self.template_name, {
             "individual_form": individual_form,
             "organisation_form": organisation_form,
             "formset": formset
         })
-    
+
     def post(self, request):
         individual_form = IndividualForm(request.POST, prefix="individual")
         organisation_form = OrganisationForm(request.POST, prefix="organisation")
@@ -67,13 +69,18 @@ class RegistrationView(TemplateView):
             individual.save()
             print("Successfuly created individual: ", individual)
 
-            # TODO: subscribe to newsletter maybe
             newsletter = individual_form.cleaned_data["newsletter"]
             if newsletter:
+                print(requests.post(
+                    settings.PODPRI_URL,
+                    data={
+                        "email": email,
+                        "segment_id": settings.SEGMENT_ID,
+                    }))
                 print("Subscribe to newsletter")
 
             return redirect("thank-you-for-registration")
-        
+
         # organisation as individual
         elif organisation_form.is_valid():
             print("organisation form is valid")
