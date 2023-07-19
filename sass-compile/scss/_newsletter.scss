@@ -4,6 +4,7 @@
     background-position: center center;
     background-size: cover;
     background-color: $disco-white;
+    padding-block: 64px;
 
     @include media-breakpoint-up(lg) {
         background-image: url("/static/img/globe-grid.svg");
