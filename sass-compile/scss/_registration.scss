@@ -73,5 +73,13 @@
         .error {
             color: $disco-pink;
         }
+
+        &:invalid {
+            button[type="submit"] {
+                pointer-events: none;
+                background-color: $disco-grey;
+                border-color: $disco-dark-grey;
+            }
+        }
     }
 }

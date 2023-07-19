@@ -39,6 +39,11 @@
   color: $primary;
 }
 
+.btn-primary:disabled {
+  background-color: $disco-grey;
+  border-color: $disco-dark-grey;
+}
+
 input.form-control {
   &,
   &:focus {

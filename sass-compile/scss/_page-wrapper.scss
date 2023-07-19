@@ -289,8 +289,8 @@ hr.divider {
   }
 
   .news {
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding-top: 120px;
+    padding-bottom: 120px;
 
     h2 {
       font-size: 72px;
@@ -364,8 +364,8 @@ hr.divider {
 
   .speakers,
   .programme {
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding-top: 120px;
+    padding-bottom: 120px;
 
     .card {
       text-decoration: none;
@@ -563,6 +563,8 @@ hr.divider {
   }
 
   .location {
+    padding-top: 120px;
+
     h2 {
       font-size: 72px;
       color: $disco-white;
@@ -585,8 +587,8 @@ hr.divider {
 
   .scholarship {
     background-color: $disco-white;
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding-top: 120px;
+    padding-bottom: 120px;
 
     h2 {
       font-size: 72px;
@@ -618,8 +620,8 @@ hr.divider {
   }
 
   .about {
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding-top: 120px;
+    padding-bottom: 120px;
 
     h2 {
       font-size: 72px;
@@ -637,6 +639,7 @@ hr.divider {
 
   .organized-by {
     background-color: $disco-pink;
+    padding-block: 64px;
 
     .white-pill {
       background-color: $disco-white;
@@ -660,8 +663,8 @@ hr.divider {
   }
 
   .supporters {
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding-top: 120px;
+    padding-bottom: 120px;
   }
 
   footer > .container {
