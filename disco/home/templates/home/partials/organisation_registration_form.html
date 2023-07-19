@@ -45,7 +45,7 @@
       <div id="participants-form" class="my-6 mx-6">
         {{ formset.management_form }}
         {% for form in formset %}
-        <div class="participant">
+        <div class="participant d-none">
           {{ form.as_div }}
         </div>
         {% endfor %}
