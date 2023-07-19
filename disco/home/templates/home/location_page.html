@@ -13,6 +13,7 @@
   <div class="row my-7">
     <div class="col-12">
       <div id="map"></div>
+      <script>var __MARKER_STATIC_URL__ = "{% static 'img/location-pin.png' %}";</script>
       <script type="module" src="{% static 'js/map.js' %}"></script>
     </div>
   </div>
@@ -30,9 +31,9 @@
   </div>
 
   <div class="row d-flex justify-content-center my-4">
-    <div class="col-12 col-md-10 text-center rich-text">
-      <h2 class="mb-5">Accomodation</h2>
-      <p>{{ page.accommodation_description }}</p>
+    <div class="col-12 col-md-10 text-center rich-text accommodation">
+      <h2 class="mb-5">Accommodation</h2>
+      <p class="accommodation-description">{{ page.accommodation_description }}</p>
     </div>
   </div>
 

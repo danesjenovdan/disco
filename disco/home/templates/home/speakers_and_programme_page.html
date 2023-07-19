@@ -28,9 +28,7 @@
             <div class="social-media">
               {% for sm in speaker.social_media %}
               <a href="{{ sm.value}}" target="_blank" class="d-flex align-items-center justify-content-center">
-                {% with 'img/social/'|add:sm.block_type|add:'.svg' as icon_static %}
-                  <img src="{% static icon_static %}" class="img-fluid" />
-                {% endwith %}
+                {% include 'home/partials/social_media_icon.html' with icon_type=sm.block_type only %}
               </a>
               {% endfor %}
             </div>
@@ -49,18 +47,28 @@
     </div>
   </div>
   <div class="container">
+    <div class="globe-bg globe--left"></div>
+    <div class="globe-bg globe--right"></div>
     {% for day in programme %}
     <div class="row my-7">
       <div class="col-12">
         <div class="programme-day d-flex">
+          <div class="programme-day-date">
+            {{ day.date|date:"j. n." }}
+          </div>
           <div class="programme-day-column">
             <div>
               <h3 class="text-center">{{ day.title }}</h3>
             </div>
             <div class="programme-day-column-row d-flex">
-              <div class="d-flex flex-column">
-                <span>Location</span>
-                <span>{{ day.location }}</span>
+              <div class="d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#FF4FDE" width="26" height="26" viewBox="0 0 26 26" class="me-3">
+                  <path d="M20.7 16.37a.41.41 0 0 0-.38-.25h-2.76c2.43-3.14 3.66-5.64 3.66-7.44a8.22 8.22 0 0 0-16.44 0c0 1.8 1.23 4.3 3.66 7.44H5.68c-.17 0-.31.1-.38.25l-3.37 8.26a.4.4 0 0 0 .37.56h21.4a.4.4 0 0 0 .37-.56l-3.37-8.26ZM8.34 8.68a4.67 4.67 0 1 1 9.33.01 4.67 4.67 0 0 1-9.33 0ZM2.9 24.38l3.04-7.45H9.1c.34.42.68.83 1.02 1.21l.32.37a50.85 50.85 0 0 0 2.29 2.43.4.4 0 0 0 .56 0c.02 0 1.02-.99 2.3-2.43l.31-.37c.33-.38.68-.78 1.02-1.2h3.14l3.04 7.44H2.91Z"/>
+                </svg>
+                <div class="d-flex flex-column">
+                  <span>Location</span>
+                  <span>{{ day.location }}</span>
+                </div>
               </div>
               <div class="d-flex flex-column">
                 <span>Available for</span>

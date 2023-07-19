@@ -53,7 +53,7 @@
     }
 
     if (scholarship_form) {
-        
+
         const scholarship_field = document.querySelector("#id_individual-applied_for_scholarship");
         scholarship_field.addEventListener("change", (event) => {
             console.log("scholarship chosen", event.target.checked);
@@ -75,6 +75,12 @@
 
     add_participants_button.addEventListener("click", (event) => {
         const existing_form = document.querySelectorAll(".participant")[0];
+
+        if (existing_form.classList.contains("d-none")) {
+            existing_form.classList.remove("d-none");
+            return;
+        }
+
         let new_form = existing_form.cloneNode(true);
         let formRegex = RegExp(`form-(\\d){1}-`,'g');
 
@@ -83,6 +89,5 @@
         participants_form.insertBefore(new_form, add_participants_button);
         totalForms.setAttribute('value', `${forms_num+1}`);
     })
-  
+
   })();
-  
