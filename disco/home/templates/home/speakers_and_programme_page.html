@@ -28,9 +28,7 @@
             <div class="social-media">
               {% for sm in speaker.social_media %}
               <a href="{{ sm.value}}" target="_blank" class="d-flex align-items-center justify-content-center">
-                {% with 'img/social/'|add:sm.block_type|add:'.svg' as icon_static %}
-                  <img src="{% static icon_static %}" class="img-fluid" />
-                {% endwith %}
+                {% include 'home/partials/social_media_icon.html' with icon_type=sm.block_type only %}
               </a>
               {% endfor %}
             </div>

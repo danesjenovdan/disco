@@ -86,6 +86,7 @@
 
 {% include 'home/partials/newsletter.html' %}
 
+{% if speakers %}
 <div class="bg-black">
   <div id="speakers" class="speakers">
     <div class="spinning-banner heading-banner">
@@ -106,9 +107,7 @@
               <div class="social-media">
                 {% for sm in speaker.social_media %}
                 <a href="{{ sm.value }}" target="_blank" class="d-flex align-items-center justify-content-center">
-                  {% with 'img/social/'|add:sm.block_type|add:'.svg' as icon_static %}
-                    <img src="{% static icon_static %}" class="img-fluid" />
-                  {% endwith %}
+                  {% include 'home/partials/social_media_icon.html' with icon_type=sm.block_type only %}
                 </a>
                 {% endfor %}
               </div>
@@ -137,9 +136,10 @@
     </div>
   </div>
 </div>
+{% endif %}
 
 <div class="bg-black">
-  <div class="programme">
+  <div id="programme" class="programme">
     <div class="spinning-banner heading-banner">
       <div>
         <h2 class="spinning-content">Programme –</h2>
@@ -223,7 +223,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg-6">
-        <img src="{% static 'img/scholarship.png' %}" class="img-fluid" />
+        <img src="{% static 'img/scholarship-orange.png' %}" class="img-fluid" />
       </div>
       <div class="col-12 col-lg-6">
         <h2>{{ page.scholarship_title }}</h2>
@@ -317,11 +317,11 @@
       </div>
       <div class="col-12 col-md-9">
         <div class="logos-box support-nl d-flex justify-content-center align-items-center">
-          <img src="{% static 'img/logos/nl.svg' %}" class="logo" />
+          <img src="{% static 'img/logos/powered-by-nl.png' %}" class="logo" />
         </div>
       </div>
     </div>
-    <div class="row">
+    {% comment %} <div class="row">
       <div class="offset-md-3 col-md-9">
         <div class="logos-box d-flex justify-content-between align-items-center">
           <img src="{% static 'img/logos/acf-logo.svg' %}" class="logo" />
@@ -332,7 +332,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> {% endcomment %}
     {% if page.sponsored_by %}
     <div class="row">
       <div class="col-12">
