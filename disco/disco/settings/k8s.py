@@ -41,6 +41,9 @@ MAUTIC_URL = os.getenv('MAUTIC_URL', 'https://localhost/api/')
 MAUTIC_USER = os.getenv('MAUTIC_USER', 'apiuser')
 MAUTIC_PASS = os.getenv('MAUTIC_PASSWORD', 'apigeslo')
 
+PODPRI_URL = os.getenv("PODPRI_URL", "https://localhost:8888/api/subscribe/")
+SEGMENT_ID = os.getenv("SEGMENT_ID", 5)
+
 REGISTRATION_SEGMENT = 30
 REGISTERED_SEGMENT = 31
 

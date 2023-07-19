@@ -70,7 +70,10 @@ class ProgrammeDay(models.Model):
 class Registered(models.Model):
     registered_at = models.DateTimeField(auto_now_add=True)
     name = models.TextField()
-    email = models.EmailField()
+    email = models.EmailField(
+        unique=True,
+        error_messages={'unique': "You have already registered for the conference using this email address. Please use an alternative address."}
+    )
     organisation_name = models.TextField(blank=True)
     country = CountryField(blank_label="")
     has_paid = models.BooleanField(default=False)
