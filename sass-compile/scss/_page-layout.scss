@@ -30,6 +30,10 @@
   }
 }
 
+.bg-black {
+  background: $disco-black;
+}
+
 .btn-primary:hover {
   background-color: $body-bg;
   color: $primary;
