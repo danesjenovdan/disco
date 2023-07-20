@@ -141,7 +141,7 @@ class NewHomePage(Page):
             location_page = LocationPage.objects.first()
         except:
             location_page = None
-        
+
         context["news_list"] = news_list
         context["exposed_news"] = exposed_news
         context["speakers_and_programme_page"] = speakers_and_programme_page
@@ -151,12 +151,18 @@ class NewHomePage(Page):
 
 
 class SpeakersAndProgrammePage(Page):
+    show_speakers = models.BooleanField(default=False)
+
+    content_panels = Page.content_panels + [
+        FieldPanel("show_speakers"),
+    ]
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
 
         context["programme"] = ProgrammeDay.objects.all().order_by("date")
         context["speakers"] = Speaker.objects.all()
+        context["show_speakers"] = self.show_speakers
 
         return context
 
@@ -186,4 +192,3 @@ class LocationPage(Page):
 
 class NewsletterSignupPage(Page):
     pass
-

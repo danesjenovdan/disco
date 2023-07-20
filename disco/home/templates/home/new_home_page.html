@@ -129,7 +129,7 @@
       {% if speakers_and_programme_page %}
       <div class="row">
         <div class="col-12">
-          <a href="{% pageurl speakers_and_programme_page %}" class="link-to-site"><span>Meet all speakers</span></a>
+          <a href="{% pageurl speakers_and_programme_page %}" class="link-to-site"><span>Explore our speaker lineup</span></a>
         </div>
       </div>
       {% endif %}
@@ -155,7 +155,7 @@
             <div class="programme-day-date">
               {{ day.date|date:"j. n." }}
             </div>
-            <div class="programme-day-column">
+            <div class="programme-day-column line-right">
               <div>
                 <h3 class="text-center">{{ day.title }}</h3>
               </div>
@@ -170,7 +170,7 @@
                   </div>
                 </div>
                 <div class="d-flex flex-column">
-                  <span>Available for</span>
+                  <span>Open to</span>
                   <span>{{ day.available_for }}</span>
                 </div>
               </div>
@@ -184,8 +184,8 @@
               </div>
               {% if speakers_and_programme_page %}
               <div class="p-3 text-center">
-                <a href="{% pageurl speakers_and_programme_page %}" class="btn btn-primary">
-                  See more / Details
+                <a href="{% pageurl speakers_and_programme_page %}#{{ day.title|slugify }}" class="btn btn-primary">
+                  Details
                   <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 19 14">
                     <path d="M10.85 12.99 11.87 14 19 7l-7.13-7-1.02 1.01 5.36 5.27H0v1.44h16.21l-5.36 5.27Z"/>
                   </svg>
@@ -296,7 +296,9 @@
                       <h2>{{ page.organized_by_title }}</h2>
                     </div>
                     <div class="col-12 col-lg-6 d-flex align-items-center">
-                      <p>{{ page.organized_by_text }}</p>
+                      <div>
+                        {{ page.organized_by_text|linebreaks }}
+                      </div>
                     </div>
                   </div>
                 </div>

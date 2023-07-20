@@ -61,7 +61,7 @@ class ProgrammeDay(models.Model):
                 ]))
             ], use_json_field=True))
         ]))
-    ], use_json_field=True)
+    ], use_json_field=True, null=True, blank=True)
 
     def __str__(self):
         return self.title

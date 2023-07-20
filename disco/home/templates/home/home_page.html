@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static wagtailcore_tags %}
 
 {% block body_class %}bg-grid{% endblock %}
 
@@ -46,9 +46,8 @@
         <div class="form-check mt-2">
           <input class="form-check-input" type="checkbox" value="" required id="subscribe-check">
           <label class="form-check-label text-white" for="subscribe-check">
-            Yes, I want to receive updates about the DISCO Slovenia conference. Danes je nov dan will
-            store my email and delete it whenever I ask them in accordance with the organisation's
-            privacy policy.
+            Yes, I want to receive updates about the DISCO Slovenia conference. Danes je nov dan will store my email and delete it whenever I ask them to in accordance with the organisation's
+            <a href="{% pageurl settings.home.MetaSettings.privacy_policy_page %}">privacy policy</a>.
           </label>
         </div>
       </form>
@@ -90,7 +89,7 @@
         </div>
       </div>
       <div class="privacy-policy">
-        <a href="https://drive.google.com/file/d/1TI8rcfnmoTkt-ZRv2-dlHsT2AGQ3-bOy/view?usp=sharing" target="_blank" rel="noopener noreferrer">Privacy policy</a>
+        <a href="{% pageurl settings.home.MetaSettings.privacy_policy_page %}">Privacy policy</a>
       </div>
     </div>
   </div>

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static wagtailcore_tags %}
 
 {% block body_class %}bg-grid{% endblock %}
 
@@ -47,7 +47,7 @@
         </div>
       </div>
       <div class="privacy-policy">
-        <a href="https://drive.google.com/file/d/1TI8rcfnmoTkt-ZRv2-dlHsT2AGQ3-bOy/view?usp=sharing" target="_blank" rel="noopener noreferrer">Privacy policy</a>
+        <a href="{% pageurl settings.home.MetaSettings.privacy_policy_page %}">Privacy policy</a>
       </div>
     </div>
   </div>

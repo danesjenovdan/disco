@@ -424,6 +424,11 @@ hr.divider {
     border: 1px solid $disco-white;
     background-color: $disco-black;
 
+    a[name] {
+      position: relative;
+      top: -120px;
+    }
+
     h3 {
       font-size: 72px;
       margin: 40px 0;
@@ -463,7 +468,7 @@ hr.divider {
       flex-grow: 1;
       flex-basis: 50%;
 
-      &:nth-child(2) {
+      &.line-right {
         border-right: 1px solid $disco-white;
       }
 
@@ -657,7 +662,10 @@ hr.divider {
         font-size: 24px;
         color: $disco-black;
         line-height: 27px;
-        margin-bottom: 0;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
       }
     }
   }
