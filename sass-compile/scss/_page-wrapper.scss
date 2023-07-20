@@ -6,6 +6,10 @@
   h2 {
     font-size: 48px;
     margin-bottom: 20px;
+
+    @include media-breakpoint-down(sm) {
+      font-size: 34px;
+    }
   }
 
   p {
@@ -223,6 +227,10 @@ hr.divider {
     .logo {
       max-height: 85px;
       max-width: unset;
+
+      @include media-breakpoint-down(sm) {
+        max-height: 40px;
+      }
     }
   }
 }
@@ -262,16 +270,28 @@ hr.divider {
       line-height: 0.85;
       margin-top: 80px;
       margin-bottom: 20px;
+
+      @include media-breakpoint-down(sm) {
+        font-size: 64px;
+      }
     }
 
     h2 {
       font-size: 48px;
       line-height: 1;
+
+      @include media-breakpoint-down(sm) {
+        font-size: 34px;
+      }
     }
 
     h2:last-child {
       margin-top: 50px;
       margin-bottom: 200px;
+
+      @include media-breakpoint-down(sm) {
+        margin-bottom: 100px;
+      }
     }
 
     h3 {
@@ -279,6 +299,11 @@ hr.divider {
       font-size: 72px;
       line-height: 1;
       padding-right: 150px;
+
+      @include media-breakpoint-down(sm) {
+        font-size: 50px;
+        padding-right: 0;
+      }
     }
 
     p {
@@ -296,6 +321,10 @@ hr.divider {
       font-size: 72px;
       color: $disco-white;
       margin-bottom: 40px;
+
+      @include media-breakpoint-down(sm) {
+        font-size: 50px;
+      }
     }
 
     .card {
@@ -424,6 +453,11 @@ hr.divider {
     border: 1px solid $disco-white;
     background-color: $disco-black;
 
+    @include media-breakpoint-down(sm) {
+      flex-direction: column;
+      margin-bottom: 50px;
+    }
+
     a[name] {
       position: relative;
       top: -120px;
@@ -432,6 +466,10 @@ hr.divider {
     h3 {
       font-size: 72px;
       margin: 40px 0;
+
+      @include media-breakpoint-down(sm) {
+        font-size: 40px;
+      }
     }
 
     h4 {
@@ -447,8 +485,12 @@ hr.divider {
 
     p {
       font-size: 24px;
-      line-height: 27px;
+      line-height: 1.2;
       color: $disco-white;
+
+      @include media-breakpoint-down(sm) {
+        font-size: 18px;
+      }
     }
 
     .programme-day-date {
@@ -462,6 +504,10 @@ hr.divider {
       transform-origin: bottom right;
       transform: translateX(-100%) rotate(-90deg);
       color: $disco-black;
+
+      @include media-breakpoint-down(sm) {
+        transform: translate(10px, -20px);
+      }
     }
 
     .programme-day-column {
@@ -516,8 +562,12 @@ hr.divider {
 
         span:last-child {
           font-size: 24px;
-          line-height: 27px;
+          line-height: 1.2;
           color: $disco-white;
+
+          @include media-breakpoint-down(sm) {
+            font-size: 18px;
+          }
         }
 
         &:first-child {
@@ -573,6 +623,10 @@ hr.divider {
     h2 {
       font-size: 72px;
       color: $disco-white;
+
+      @include media-breakpoint-down(sm) {
+        font-size: 50px;
+      }
     }
 
     .btn-primary {
@@ -581,6 +635,11 @@ hr.divider {
       align-items: center;
       padding: 13px 33px;
       font-size: 24px;
+
+      @include media-breakpoint-down(sm) {
+        padding: 10px 24px;
+        font-size: 18px;
+      }
 
       svg {
         width: 19px;
@@ -600,13 +659,21 @@ hr.divider {
       line-height: 66px;
       color: $disco-black;
       margin-bottom: 40px;
+
+      @include media-breakpoint-down(sm) {
+        font-size: 50px;
+      }
     }
 
     p {
       font-size: 24px;
-      line-height: 27px;
+      line-height: 1.2;
       color: $disco-black;
       margin-bottom: 40px;
+
+      @include media-breakpoint-down(sm) {
+        font-size: 18px;
+      }
     }
 
     .btn-primary {
@@ -615,6 +682,11 @@ hr.divider {
       align-items: center;
       padding: 13px 33px;
       font-size: 24px;
+
+      @include media-breakpoint-down(sm) {
+        padding: 10px 24px;
+        font-size: 18px;
+      }
 
       svg {
         width: 19px;
@@ -633,12 +705,24 @@ hr.divider {
       color: $disco-white;
       text-align: center;
       margin-bottom: 40px;
+
+      @include media-breakpoint-down(sm) {
+        font-size: 50px;
+      }
     }
 
     p {
       font-size: 24px;
-      line-height: 27px;
+      line-height: 1.2;
       color: $disco-white;
+
+      @include media-breakpoint-down(sm) {
+        font-size: 18px;
+      }
+    }
+
+    img {
+      margin-bottom: 16px;
     }
   }
 
@@ -651,17 +735,30 @@ hr.divider {
       padding-top: 60px;
       padding-bottom: 60px;
 
+      @include media-breakpoint-down(sm) {
+        border-radius: 50px;
+      }
+
       h2 {
         font-size: 48px;
+        line-height: 1.1;
         color: $disco-black;
-        line-height: 48px;
         margin-bottom: 0;
+
+        @include media-breakpoint-down(sm) {
+          font-size: 34px;
+          margin-bottom: 16px;
+        }
       }
 
       p {
         font-size: 24px;
+        line-height: 1.2;
         color: $disco-black;
-        line-height: 27px;
+
+        @include media-breakpoint-down(sm) {
+          font-size: 18px;
+        }
 
         &:last-child {
           margin-bottom: 0;
@@ -681,9 +778,13 @@ hr.divider {
 
     p {
       font-size: 32px;
-      line-height: 34px;
+      line-height: 1.2;
       color: $disco-white;
       margin-bottom: 0;
+
+      @include media-breakpoint-down(sm) {
+        font-size: 18px;
+      }
 
       a {
         color: $disco-white;
@@ -698,6 +799,10 @@ hr.divider {
     .social-media {
       display: flex;
       align-items: center;
+
+      @include media-breakpoint-down(sm) {
+        margin-top: 16px;
+      }
 
       a.icon {
         width: 36px;
@@ -736,9 +841,13 @@ hr.divider {
 .news-page {
   h1 {
     font-size: 72px;
-    line-height: 66px;
+    line-height: 1.1;
     color: $disco-white;
     margin-bottom: 20px;
+
+    @include media-breakpoint-down(sm) {
+      font-size: 50px;
+    }
   }
 
   p {

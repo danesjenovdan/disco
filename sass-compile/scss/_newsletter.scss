@@ -8,11 +8,14 @@
 
     @include media-breakpoint-up(lg) {
         background-image: url("/static/img/globe-grid.svg");
-
     }
 
     .black-pill {
         background-color: $disco-black;
+
+        @include media-breakpoint-down(sm) {
+            border-radius: 50px;
+        }
 
         h2 {
             color: $disco-white;
