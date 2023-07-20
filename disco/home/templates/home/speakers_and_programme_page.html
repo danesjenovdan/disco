@@ -9,6 +9,7 @@
 
 {% block content %}
 
+{% if show_speakers %}
 <div class="speakers" id="speakers">
   <div class="spinning-banner heading-banner">
     <div>
@@ -39,6 +40,7 @@
     </div>
   </div>
 </div>
+{% endif %}
 
 <div class="programme" id="programme">
   <div class="spinning-banner heading-banner">
@@ -53,10 +55,11 @@
     <div class="row my-7">
       <div class="col-12">
         <div class="programme-day d-flex">
+          <a name="{{ day.title|slugify }}"></a>
           <div class="programme-day-date">
             {{ day.date|date:"j. n." }}
           </div>
-          <div class="programme-day-column">
+          <div class="programme-day-column line-right">
             <div>
               <h3 class="text-center">{{ day.title }}</h3>
             </div>
@@ -71,7 +74,7 @@
                 </div>
               </div>
               <div class="d-flex flex-column">
-                <span>Available for</span>
+                <span>Open to</span>
                 <span>{{ day.available_for }}</span>
               </div>
             </div>
@@ -83,7 +86,7 @@
             <div class="p-6 flex-grow-1 d-flex align-items-center">
               <p class="mb-0">{{ day.description }}</p>
             </div>
-
+            {% if day.timeslots %}
             <div class="p-4">
               <h4 class="text-center mb-0">Confirmed sessions</h4>
             </div>
@@ -109,7 +112,7 @@
               </div>
             </div>
             {% endfor %}
-
+            {% endif %}
           </div>
         </div>
 

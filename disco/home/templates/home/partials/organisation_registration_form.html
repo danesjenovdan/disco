@@ -1,3 +1,5 @@
+{% load static wagtailcore_tags %}
+
 <form action="{% url 'registration' %}" method="post" id="organisation_form" class="{% if submitted_form != 'organisation' %}d-none{% endif %}">
     {% csrf_token %}
 
@@ -108,7 +110,7 @@
         <div class="form-check my-3">
           <input type="radio" name="organisation-registration_fee" value="50" id="id_organisation-registration_fee_1" class="form-check-input" checked>
           <label for="id_organisation-registration_fee_1" class="form-check-label">
-            <p class="m-0">€50 plus VAT (€61 total)</p>
+            <p class="m-0">€50 plus VAT or €61 in total</p>
           </label>
         </div>
 
@@ -138,7 +140,7 @@
     <div id="newsletter-section" class="mt-7 mb-3 form-check">
         <input type="checkbox" name="organisation-newsletter" id="{{ organisation_form.newsletter.id_for_label }}" class="form-check-input">
         <label for="{{ organisation_form.newsletter.id_for_label }}" class="form-check-label">
-            <p class="small">Yes, I want to receive updates about the DISCO Slovenia conference. Danes je nov dan will store my email and delete it whenever I ask them in accordance with the organisation's privacy policy.</p>
+            <p class="small">Yes, I want to receive updates about the DISCO Slovenia conference. Danes je nov dan will store my email and delete it whenever I ask them to in accordance with the organisation's <a href="{% pageurl settings.home.MetaSettings.privacy_policy_page %}">privacy policy</a>.</p>
         </label>
     </div>
 
