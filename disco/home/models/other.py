@@ -84,10 +84,6 @@ class Registered(models.Model):
     ])
     mautic_id = models.IntegerField(null=True, blank=True)
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.__per_save_has_paid = self.has_paid
-
     def __str__(self):
         return self.name
 
@@ -112,6 +108,7 @@ class Individual(Registered):
         super().__init__(*args, **kwargs)
         self.__per_save_scholarship_granted = self.scholarship_granted
         self.__per_save_scholarship_denied = self.scholarship_denied
+        self.__per_save_has_paid = self.has_paid
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -142,6 +139,10 @@ class Organisation(Registered):
     vat_id = models.TextField(blank=True, null=True)
     vat_registered = models.BooleanField(default=False)
     is_participant = models.BooleanField(default=False)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.__per_save_has_paid = self.has_paid
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
