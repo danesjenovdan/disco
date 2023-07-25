@@ -352,22 +352,30 @@
         </div>
       </div>
     </div>
-    {% comment %} <div class="row">
+    <div class="row">
       <div class="offset-md-3 col-md-9">
         <div class="logos-box d-flex justify-content-between align-items-center">
-          <img src="{% static 'img/logos/acf-logo.svg' %}" class="logo" />
+          <a href="https://www.norwaygrants.si/" target="_blank" class="logo">
+            <img src="{% static 'img/logos/acf-logo.svg' %}" />
+          </a>
           <div class="flex-grow-1 d-flex justify-content-end align-items-center">
-            <img src="{% static 'img/logos/cnvos-logo.png' %}" class="logo" />
-            <img src="{% static 'img/logos/slagalica-logo.svg' %}" class="logo ms-4" />
-            <!-- <img src="{% static 'img/logos/nl.svg' %}" class="logo" /> -->
+            <a href="https://www.cnvos.si/" target="_blank" class="logo">
+              <img src="{% static 'img/logos/cnvos-logo.png'' %}" />
+            </a>
+            <a href="https://zaklada-slagalica.hr/" target="_blank" class="logo ms-4">
+              <img src="{% static 'img/logos/slagalica-logo.svg' %}" />
+            </a>
+            <a href="https://gulbenkian.pt/" target="_blank" class="logo ms-4">
+              <img src="{% static 'img/logos/fcg-logo.png' %}" />
+            </a>
           </div>
         </div>
       </div>
-    </div> {% endcomment %}
+    </div>
     {% if page.sponsored_by %}
-    <div class="row">
+    <div class="row my-6">
       <div class="col-12">
-        <hr />
+        <hr class="divider" />
       </div>
     </div>
     <div class="row">
