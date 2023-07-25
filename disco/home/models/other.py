@@ -122,14 +122,16 @@ class Individual(Registered):
 
         if self.scholarship_granted and not self.__per_save_scholarship_granted:
             if not settings.DEBUG:
-                mautic_api.addTagToContact(self.mautic_id, 'disco-scholarship-granted')
+                # mautic_api.addTagToContact(self.mautic_id, 'disco-scholarship-granted')
+                mautic_api.createContact(email=self.email, tags=['disco-scholarship-granted'])
             else:
                 print('Adding tag to contact', self.mautic_id, 'disco-scholarship-granted')
             self.__per_save_scholarship_granted = self.scholarship_granted
 
         if self.scholarship_denied and not self.__per_save_scholarship_denied:
             if not settings.DEBUG:
-                mautic_api.addTagToContact(self.mautic_id, 'disco-scholarship-denied')
+                # mautic_api.addTagToContact(self.mautic_id, 'disco-scholarship-denied')
+                mautic_api.createContact(email=self.email, tags=['disco-scholarship-denied'])
             else:
                 print('Adding tag to contact', self.mautic_id, 'disco-scholarship-denied')
             self.__per_save_scholarship_denied = self.scholarship_denied
