@@ -9,38 +9,35 @@
 
       <!-- ORGANISATION NAME -->
       <div class="mb-5">
-        <label for="{{ organisation_form.organisation_name.id_for_label }}" class="form-label">Organisation name</label>
+        <label for="{{ organisation_form.organisation_name.id_for_labsel }}" class="form-label">Organisation name</label>
         {{ organisation_form.organisation_name }}
-        {% if organisation_form.organisation_name.errors %}
-        <p class="error">{{ organisation_form.organisation_name.errors }}</p>
-        {% endif %}
+        {% for error in organisation_form.organisation_name.errors %}
+        <p class="error my-2">{{ error }}</p>
+        {% endfor %}
       </div>
 
       <!-- NAME -->
       <div class="mb-5">
         <label for="{{ organisation_form.name.id_for_label }}" class="form-label">Your name and surname</label>
         {{ organisation_form.name }}
-        {% if organisation_form.name.errors %}
-        <p class="error">{{ organisation_form.name.errors }}</p>
-        {% endif %}
+        {% for error in organisation_form.name.errors %}
+        <p class="error my-2">{{ error }}</p>
+        {% endfor %}
       </div>
 
       <!-- EMAIL -->
       <div class="mb-3">
         <label for="{{ organisation_form.email.id_for_label }}" class="form-label">Your email address</label>
         {{ organisation_form.email }}
-        {% if organisation_form.email.errors %}
-        <p class="error">{{ organisation_form.email.errors }}</p>
-        {% endif %}
+        {% for error in organisation_form.email.errors %}
+        <p class="error my-2">{{ error }}</p>
+        {% endfor %}
       </div>
 
       <!-- ALSO ATTENDING -->
       <div class="mt-3 mb-5 form-check">
         <input type="checkbox" name="organisation-also_attending" id="id_organisation-also_attending" class="form-check-input">
         <label for="id_organisation-also_attending" class="form-check-label small">I am also attending the conference.</label>
-        {% if organisation_form.also_attending.errors %}
-        <p class="error">{{ organisation_form.also_attending.errors }}</p>
-        {% endif %}
       </div>
 
       <!-- PARTICIPANTS -->
@@ -62,36 +59,36 @@
       <div class="mb-5">
         <label for="{{ organisation_form.address.id_for_label }}" class="form-label">Organisation address</label>
         {{ organisation_form.address }}
-        {% if organisation_form.address.errors %}
-        <p class="error">{{ organisation_form.address.errors }}</p>
-        {% endif %}
+        {% for error in organisation_form.address.errors %}
+        <p class="error my-2">{{ error }}</p>
+        {% endfor %}
       </div>
 
       <!-- ORGANISATION VAT -->
       <div class="mb-3">
         <label for="{{ organisation_form.vat_id.id_for_label }}" class="form-label">Valid VAT ID or other identification number</label>
         {{ organisation_form.vat_id }}
-        {% if organisation_form.vat_id.errors %}
-        <p class="error">{{ organisation_form.vat_id.errors }}</p>
-        {% endif %}
+        {% for error in organisation_form.vat_id.errors %}
+        <p class="error my-2">{{ error }}</p>
+        {% endfor %}
       </div>
 
       <!-- VAT REGISTERED -->
       <div class="mt-3 mb-5 form-check">
         <input type="checkbox" name="organisation-vat_registered" id="id_organisation-vat_registered" class="form-check-input">
         <label for="id_organisation-vat_registered" class="form-check-label">I confirm my organisation is VAT registered.</label>
-        {% if organisation_form.vat_registered.errors %}
-        <p class="error">{{ organisation_form.vat_registered.errors }}</p>
-        {% endif %}
+        {% for error in organisation_form.vat_registered.errors %}
+        <p class="error my-2">{{ error }}</p>
+        {% endfor %}
       </div>
 
       <!-- COUNTRY  -->
       <div class="mb-5">
         <label for="{{ organisation_form.country.id_for_label }}" class="form-label">Country</label>
         {{ organisation_form.country }}
-        {% if organisation_form.country.errors %}
-        <p class="error">{{ organisation_form.country.errors }}</p>
-        {% endif %}
+        {% for error in organisation_form.country.errors %}
+        <p class="error my-2">{{ error }}</p>
+        {% endfor %}
       </div>
 
       <hr class="divider-pink" />
@@ -130,9 +127,9 @@
           </label>
         </div>
 
-        {% if organisation_form.registration_fee.errors %}
-        <p class="error">{{ organisation_form.registration_fee.errors }}</p>
-        {% endif %}
+        {% for error in organisation_form.registration_fee.errors %}
+        <p class="error my-2">{{ error }}</p>
+        {% endfor %}
       </div>
 
 
