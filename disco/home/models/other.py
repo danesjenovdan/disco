@@ -108,12 +108,31 @@ class Individual(Registered):
     scholarship_granted = models.BooleanField(default=False)
     scholarship_denied = models.BooleanField(default=False)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.__per_save_scholarship_granted = self.scholarship_granted
+        self.__per_save_scholarship_denied = self.scholarship_denied
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         if self.has_paid and not self.__per_save_has_paid:
             if not settings.DEBUG:
                 mautic_api.addContactToASegment(segment_id=settings.REGISTERED_SEGMENT, contact_id=self.mautic_id)
             self.__per_save_has_paid = self.has_paid
+
+        if self.scholarship_granted and not self.__per_save_scholarship_granted:
+            if not settings.DEBUG:
+                mautic_api.addTagToContact(self.mautic_id, 'disco-scholarship-granted')
+            else:
+                print('Adding tag to contact', self.mautic_id, 'disco-scholarship-granted')
+            self.__per_save_scholarship_granted = self.scholarship_granted
+
+        if self.scholarship_denied and not self.__per_save_scholarship_denied:
+            if not settings.DEBUG:
+                mautic_api.addTagToContact(self.mautic_id, 'disco-scholarship-denied')
+            else:
+                print('Adding tag to contact', self.mautic_id, 'disco-scholarship-denied')
+            self.__per_save_scholarship_denied = self.scholarship_denied
 
 
 class Organisation(Registered):
@@ -145,7 +164,10 @@ class IndividualByOrganisation(models.Model):
         return self.name
 
     def save_to_mautic_as_participant(self):
-        response, response_status = mautic_api.createContact(email=self.email)
+        response, response_status = mautic_api.createContact(
+            email=self.email,
+            tags=['disco-group-participant']
+        )
         if response_status == 200:
             self.mautic_id = response['contact']['id']
             self.save()
