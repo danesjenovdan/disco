@@ -173,7 +173,7 @@ class ApplySpeakerView(TemplateView):
         if form.is_valid():
             print("form is valid")
             form.save()
-            return redirect("thank-you-for-registration")
+            return redirect("thank-you-speaker")
 
         else:
             print("form is not valid")
@@ -181,3 +181,7 @@ class ApplySpeakerView(TemplateView):
             return render(request, self.template_name, {
                 "form": form,
             })
+
+
+class SpeakerApplicationSuccessfulView(TemplateView):
+    template_name = "home/thank_you_for_application_page.html"

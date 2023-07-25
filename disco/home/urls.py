@@ -7,4 +7,5 @@ urlpatterns = [
     path("register/", RegistrationView.as_view(), name="registration"),
     path("thank-you/", RegistrationSuccessfulView.as_view(), name="thank-you-for-registration"),
     path("apply-to-be-a-speaker/", ApplySpeakerView.as_view(), name="apply-to-be-a-speaker"),
+    path("thank-you-for-application/", SpeakerApplicationSuccessfulView.as_view(), name="thank-you-speaker"),
 ]
