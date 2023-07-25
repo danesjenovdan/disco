@@ -682,6 +682,16 @@ hr.divider {
       align-items: center;
       padding: 13px 33px;
       font-size: 24px;
+      
+      color: $disco-white;
+      background-color: $disco-black;
+      border-color: $disco-black;
+
+      &:hover {
+        color: $disco-black;
+        background-color: $disco-white;
+        border-color: $disco-black;
+      }
 
       @include media-breakpoint-down(sm) {
         padding: 10px 24px;
