@@ -153,6 +153,19 @@ class IndividualByOrganisation(models.Model):
                 mautic_api.addContactToASegment(segment_id=settings.REGISTERED_SEGMENT, contact_id=self.mautic_id)
 
 
+class RegisteredSpeaker(models.Model):
+    name = models.TextField()
+    affiliation = models.TextField()
+    email = models.EmailField()
+    country = CountryField(blank_label="")
+    project = models.TextField()
+    project_relevancy = models.TextField()
+    travel_subsidy = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name
+
+
 # signals
 
 @receiver(post_save, sender=Individual)

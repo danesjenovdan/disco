@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django_countries.widgets import CountrySelectWidget
 from django_countries.fields import CountryField
 
-from .models import Individual, Organisation, IndividualByOrganisation
+from .models import Individual, Organisation, IndividualByOrganisation, RegisteredSpeaker
 
 
 # class RegisterTypeForm(forms.Form):
@@ -92,4 +92,32 @@ class IndividualByOrganisationForm(forms.ModelForm):
         labels = {
             "name": "Participant’s name and surname",
             "email": "Participant’s email address"
+        }
+
+
+class ApplySpeakerForm(forms.ModelForm):
+    travel_subsidy = forms.BooleanField(required=False)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.label_suffix = ""  # Removes : as label suffix
+
+    class Meta:
+        model = RegisteredSpeaker
+        exclude = []
+        widgets = {
+            "name": forms.TextInput(attrs={'class':'form-control'}),
+            "affiliation": forms.TextInput(attrs={'class':'form-control'}),
+            "email": forms.EmailInput(attrs={'class':'form-control'}),
+            "country": CountrySelectWidget(layout='{widget}', attrs={'class':'form-control'}),
+            "project": forms.Textarea(attrs={'class':'form-control'}),
+            "project_relevancy": forms.Textarea(attrs={'class':'form-control'}),
+        }
+        labels = {
+            "name": "Your name",
+            "affiliation": "Your affiliation",
+            "email": "Your email",
+            "country": "Country you will be travelling from",
+            "project": "Short description of the project you would like to present",
+            "project_relevancy": "How is your project relevant for the DISCO community?",
         }

@@ -1,0 +1,108 @@
+{% extends "new_base.html" %}
+{% load static wagtailimages_tags %}
+
+{% block body_class %}bg-black register-page{% endblock %}
+
+{% block header %}
+  {% include 'home/partials/new_header.html' %}
+{% endblock header %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-7">
+      <h1 class="mt-7 mb-5">Apply to be a speaker</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+  </div>
+
+  <div class="row my-5">
+    <div class="col-12">
+      <hr class="divider" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-lg-7">
+        <form action="{% url 'apply-to-be-a-speaker' %}" method="post">
+            {% csrf_token %}
+        
+              <!-- <hr class="divider-pink" /> -->
+        
+              <!-- NAME -->
+              <div class="my-6">
+                {{ form.name.label_tag }}
+                {{ form.name }}
+                {% for error in form.name.errors %}
+                <p class="error my-2">{{ error }}</p>
+                {% endfor %}
+              </div>
+        
+              <!-- AFFILIATION -->
+              <div class="my-6">
+                {{ form.affiliation.label_tag }}
+                {{ form.affiliation }}
+                {% for error in form.affiliation.errors %}
+                <p class="error my-2">{{ error }}</p>
+                {% endfor %}
+              </div>
+        
+              <!-- EMAIL -->
+              <div class="my-6">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+                {% for error in form.email.errors %}
+                <p class="error my-2">{{ error }}</p>
+                {% endfor %}
+              </div>
+
+              <!-- COUNTRY  -->
+              <div class="my-6">
+                <label for="{{ form.country.id_for_label }}" class="form-label">Country</label>
+                {{ form.country }}
+                {% for error in form.country.errors %}
+                <p class="error my-2">{{ error }}</p>
+                {% endfor %}
+              </div>
+
+              <!-- PROJECT DESCRIPTION -->
+              <div class="my-6">
+                {{ form.project.label_tag }}
+                {{ form.project }}
+                {% for error in form.project.errors %}
+                <p class="error my-2">{{ error }}</p>
+                {% endfor %}
+              </div>
+
+              <!-- PROJECT RELEVANCY -->
+              <div class="my-6">
+                {{ form.project_relevancy.label_tag }}
+                {{ form.project_relevancy }}
+                {% for error in form.project_relevancy.errors %}
+                <p class="error my-2">{{ error }}</p>
+                {% endfor %}
+              </div>
+        
+              <!-- TRAVEL SUBSIDY -->
+              <div class="my-6 form-check">
+                <input type="checkbox" name="travel_subsidy" id="id_travel_subsidy" class="form-check-input">
+                <label for="{{ form.travel_subsidy.id_for_label }}" class="form-check-label">Do you need a travel subsidy?</label>
+                {% for error in form.travel_subsidy.errors %}
+                <p class="error my-2">{{ error }}</p>
+                {% endfor %}
+              </div>
+        
+            <button type="submit" class="btn btn-primary">
+                Submit
+            </button>
+        
+          </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- <script type="module" src="{% static 'js/registration.js' %}"></script> -->
+
+{% endblock content %}
