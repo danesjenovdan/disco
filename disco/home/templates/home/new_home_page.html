@@ -205,6 +205,30 @@
   </div>
 </div>
 
+{% if page.speaker_application_title and page.speaker_application_description %}
+<div id="speaker-application" class="container-fluid speaker-application">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-6 d-flex align-items-end order-2 order-lg-1">
+        <img src="{% static 'img/speaker-apply.png' %}" class="img-fluid" />
+      </div>
+      <div class="col-12 col-lg-6 content order-1 order-lg-2">
+        <h2>{{ page.speaker_application_title }}</h2>
+        <p>{{ page.speaker_application_description }}</p>
+        <div>
+          <a href="/apply-to-be-a-speaker" class="btn btn-primary">
+            Apply to become a speaker
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 19 14">
+              <path d="M10.85 12.99 11.87 14 19 7l-7.13-7-1.02 1.01 5.36 5.27H0v1.44h16.21l-5.36 5.27Z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
 <div id="location" class="container location">
   <div class="row">
     <div class="col-12 d-md-flex align-items-center mb-5">
@@ -227,7 +251,7 @@
 <div id="scholarship" class="container-fluid scholarship">
   <div class="container">
     <div class="row">
-      <div class="col-12 col-lg-6">
+      <div class="col-12 col-lg-6 mb-6 mb-lg-0">
         <img src="{% static 'img/scholarship-orange.png' %}" class="img-fluid" />
       </div>
       <div class="col-12 col-lg-6">
