@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.forms import formset_factory
 from django.conf import settings
 
-from .forms import IndividualForm, OrganisationForm, IndividualByOrganisationForm
+from .forms import IndividualForm, OrganisationForm, IndividualByOrganisationForm, ApplySpeakerForm
 from .models import Individual, Organisation, IndividualByOrganisation
 
 import requests
@@ -152,3 +152,36 @@ class RegistrationView(TemplateView):
                 "organisation_form": organisation_form,
                 "submitted_form": submitted_form
             })
+
+
+class ApplySpeakerView(TemplateView):
+    template_name = "home/apply_speaker.html"
+
+    def get(self, request, *args, **kwargs):
+        form = ApplySpeakerForm()
+
+        return render(request, self.template_name, {
+            "form": form,
+        })
+    
+    def post(self, request):
+        form = ApplySpeakerForm(request.POST)
+
+        print("NEW SPEAKER")
+
+        # registration as individual
+        if form.is_valid():
+            print("form is valid")
+            form.save()
+            return redirect("thank-you-speaker")
+
+        else:
+            print("form is not valid")
+
+            return render(request, self.template_name, {
+                "form": form,
+            })
+
+
+class SpeakerApplicationSuccessfulView(TemplateView):
+    template_name = "home/thank_you_for_application_page.html"

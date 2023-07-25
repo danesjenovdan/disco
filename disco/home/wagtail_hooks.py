@@ -1,6 +1,6 @@
 from wagtail.contrib.modeladmin.options import (
     ModelAdmin, modeladmin_register)
-from .models import Speaker, ProgrammeDay, Registered, Individual, Organisation, IndividualByOrganisation
+from .models import Speaker, ProgrammeDay, Registered, Individual, Organisation, IndividualByOrganisation, RegisteredSpeaker
 
 
 class SpeakerAdmin(ModelAdmin):
@@ -48,9 +48,17 @@ class IndividualByOrganisationAdmin(ModelAdmin):
     add_to_admin_menu = True
 
 
+class RegisteredSpeakerAdmin(ModelAdmin):
+    model = RegisteredSpeaker
+    menu_icon = "pilcrow"
+    menu_order = 200
+    add_to_admin_menu = True
+
+
 modeladmin_register(SpeakerAdmin)
 modeladmin_register(ProgrammeDayAdmin)
 modeladmin_register(RegisteredAdmin)
 modeladmin_register(IndividualAdmin)
 modeladmin_register(OrganisationAdmin)
 modeladmin_register(IndividualByOrganisationAdmin)
+modeladmin_register(RegisteredSpeakerAdmin)
