@@ -653,7 +653,24 @@ hr.divider {
     background-color: $disco-white;
     padding-top: 120px;
     padding-bottom: 120px;
+  }
 
+  .speaker-application {
+    background-color: $disco-pink;
+
+    .content {
+      padding-top: 120px;
+      padding-bottom: 120px;
+
+      @include media-breakpoint-down(sm) {
+        padding-top: 40px;
+        padding-bottom: 80px;
+      }
+    }
+  }
+
+  .scholarship,
+  .speaker-application {
     h2 {
       font-size: 72px;
       line-height: 66px;

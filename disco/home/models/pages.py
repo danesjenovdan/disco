@@ -53,6 +53,9 @@ class NewHomePage(Page):
     # scholarship
     scholarship_title = models.TextField()
     scholarship_description = models.TextField()
+    # register as speaker
+    speaker_application_title = models.TextField(blank=True)
+    speaker_application_description = models.TextField(blank=True)
     # about
     about = StreamField([
         ("paragraph", blocks.StructBlock([
@@ -97,6 +100,13 @@ class NewHomePage(Page):
                 FieldPanel("scholarship_description"),
             ],
             heading="Scholarship"
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("speaker_application_title"),
+                FieldPanel("speaker_application_description"),
+            ],
+            heading="Application for speakers"
         ),
         MultiFieldPanel(
             [
