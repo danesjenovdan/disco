@@ -46,6 +46,7 @@ SEGMENT_ID = os.getenv("SEGMENT_ID", 5)
 
 REGISTRATION_SEGMENT = 30
 REGISTERED_SEGMENT = 31
+SCHOLARSHIP_SEGMENT = 32
 
 try:
     from .local import *

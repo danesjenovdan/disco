@@ -121,6 +121,7 @@ class Individual(Registered):
             if not settings.DEBUG:
                 # mautic_api.addTagToContact(self.mautic_id, 'disco-scholarship-granted')
                 mautic_api.createContact(email=self.email, tags=['disco-scholarship-granted'])
+                mautic_api.addContactToASegment(segment_id=settings.SCHOLARSHIP_SEGMENT, contact_id=self.mautic_id)
             else:
                 print('Adding tag to contact', self.mautic_id, 'disco-scholarship-granted')
             self.__per_save_scholarship_granted = self.scholarship_granted
@@ -129,6 +130,7 @@ class Individual(Registered):
             if not settings.DEBUG:
                 # mautic_api.addTagToContact(self.mautic_id, 'disco-scholarship-denied')
                 mautic_api.createContact(email=self.email, tags=['disco-scholarship-denied'])
+                mautic_api.addContactToASegment(segment_id=settings.SCHOLARSHIP_SEGMENT, contact_id=self.mautic_id)
             else:
                 print('Adding tag to contact', self.mautic_id, 'disco-scholarship-denied')
             self.__per_save_scholarship_denied = self.scholarship_denied
@@ -138,7 +140,6 @@ class Organisation(Registered):
     address = models.TextField()
     vat_id = models.TextField(blank=True, null=True)
     vat_registered = models.BooleanField(default=False)
-    is_participant = models.BooleanField(default=False)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -147,8 +148,6 @@ class Organisation(Registered):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         if self.has_paid and not self.__per_save_has_paid:
-            if self.is_participant and not settings.DEBUG:
-                mautic_api.addContactToASegment(segment_id=settings.REGISTERED_SEGMENT, contact_id=self.mautic_id)
             for individual in self.individuals.all():
                 individual.save_to_mautic_as_participant()
             self.__per_save_has_paid = self.has_paid
