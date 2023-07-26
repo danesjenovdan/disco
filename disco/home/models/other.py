@@ -185,6 +185,7 @@ class RegisteredSpeaker(models.Model):
     country = CountryField(blank_label="")
     project = models.TextField()
     project_relevancy = models.TextField()
+    project_benefit = models.TextField()
     travel_subsidy = models.BooleanField(default=False)
 
     def __str__(self):

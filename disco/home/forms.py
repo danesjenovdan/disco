@@ -112,12 +112,14 @@ class ApplySpeakerForm(forms.ModelForm):
             "country": CountrySelectWidget(layout='{widget}', attrs={'class':'form-control'}),
             "project": forms.Textarea(attrs={'class':'form-control'}),
             "project_relevancy": forms.Textarea(attrs={'class':'form-control'}),
+            "project_benefit": forms.Textarea(attrs={'class':'form-control'}),
         }
         labels = {
             "name": "Your name",
             "affiliation": "Your affiliation",
             "email": "Your email",
-            "country": "Country you will be travelling from",
-            "project": "Short description of the project you would like to present",
-            "project_relevancy": "How is your project relevant for the DISCO community?",
+            "country": "What country are you travelling from?",
+            "project": "Describe the project you want to present",
+            "project_relevancy": "How is your project relevant to DISCO attendees?",
+            "project_benefit": "How can your project benefit from the DISCO community?",
         }
