@@ -115,6 +115,7 @@ class Individual(Registered):
         if self.has_paid and not self.__per_save_has_paid:
             if not settings.DEBUG:
                 mautic_api.addContactToASegment(segment_id=settings.REGISTERED_SEGMENT, contact_id=self.mautic_id)
+                mautic_api.addContactToASegment(segment_id=settings.PAID_SEGMENT, contact_id=self.mautic_id)
             self.__per_save_has_paid = self.has_paid
 
         if self.scholarship_granted and not self.__per_save_scholarship_granted:
@@ -148,6 +149,7 @@ class Organisation(Registered):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         if self.has_paid and not self.__per_save_has_paid:
+            mautic_api.addContactToASegment(segment_id=settings.PAID_SEGMENT, contact_id=self.mautic_id)
             for individual in self.individuals.all():
                 individual.save_to_mautic_as_participant()
             self.__per_save_has_paid = self.has_paid
