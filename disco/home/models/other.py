@@ -12,32 +12,6 @@ from home.mautic_api import MauticApi
 mautic_api = MauticApi()
 
 
-class Speaker(models.Model):
-    name = models.TextField()
-    short_description = models.TextField(blank=True)
-    image = models.ForeignKey(
-        "wagtailimages.Image",
-        null=True,
-        on_delete=models.SET_NULL,
-        related_name="+"
-    )
-    social_media = StreamField([
-        ("instagram", blocks.URLBlock()),
-        ("mastodon", blocks.URLBlock()),
-        ("twitter", blocks.URLBlock()),
-        ("facebook", blocks.URLBlock()),
-        ("website", blocks.URLBlock()),
-        ("podcast", blocks.URLBlock()),
-        ("linkedin", blocks.URLBlock()),
-        ("youtube", blocks.URLBlock()),
-        ("tiktok", blocks.URLBlock()),
-    ], use_json_field=True, blank=True, max_num=3)
-    exposed = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.name
-
-
 class ProgrammeDay(models.Model):
     title = models.TextField()
     location = models.TextField()
