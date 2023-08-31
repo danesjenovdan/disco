@@ -20,32 +20,34 @@
     <div class="row my-7">
       {% for speaker in speakers %}
       <div class="col-12 col-md-6 col-lg-3">
-        <div class="card">
-          {% if speaker.news_page %}
-            <a href="{% pageurl speaker.news_page %}">
-              {% image speaker.image original class="card-img-top" %}
-            </a>
-            {% else %}
-            {% image speaker.image original class="card-img-top" %}
-            {% endif %}
+        {% if speaker.news_page %}
+        <a href="{% pageurl speaker.news_page %}" class="card">
+          {% image speaker.image original class="card-img-top" %}
           <div class="card-body px-0">
             <h5 class="card-title">
-              {% if speaker.news_page %}
-              <a href="{% pageurl speaker.news_page %}">{{ speaker.name }}</a>
-              {% else %}
               {{ speaker.name }}
-              {% endif %}
             </h5>
             <p class="card-text">{{ speaker.short_description }}</p>
-            <hr />
-            <div class="social-media">
-              {% for sm in speaker.social_media %}
-              <a href="{{ sm.value}}" target="_blank" class="d-flex align-items-center justify-content-center">
-                {% include 'home/partials/social_media_icon.html' with icon_type=sm.block_type only %}
-              </a>
-              {% endfor %}
-            </div>
           </div>
+        </a>
+        {% else %}
+        <div class="card">
+          {% image speaker.image original class="card-img-top" %}
+          <div class="card-body px-0">
+            <h5 class="card-title">
+              {{ speaker.name }}
+            </h5>
+            <p class="card-text">{{ speaker.short_description }}</p>
+          </div>
+        </div>
+        {% endif %}
+        <hr />
+        <div class="social-media">
+          {% for sm in speaker.social_media %}
+          <a href="{{ sm.value}}" target="_blank" class="d-flex align-items-center justify-content-center">
+            {% include 'home/partials/social_media_icon.html' with icon_type=sm.block_type only %}
+          </a>
+          {% endfor %}
         </div>
       </div>
       {% endfor %}

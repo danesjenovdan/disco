@@ -356,6 +356,7 @@ hr.divider {
       .card-img-top {
         height: 149px;
         object-fit: cover;
+        transition: all .7s cubic-bezier(.4,0,0,1);
       }
 
       .card-title {
@@ -375,6 +376,10 @@ hr.divider {
       }
 
       &:hover {
+        .card-img-top {
+          border-radius: 30%;
+        }
+
         .card-title {
           text-decoration: underline;
         }
@@ -425,6 +430,7 @@ hr.divider {
       .card-img-top {
         height: 286px;
         object-fit: cover;
+        transition: all .7s cubic-bezier(.4,0,0,1);
       }
 
       .card-title {
@@ -467,6 +473,16 @@ hr.divider {
           color: $disco-black;
         }
       }
+    }
+  }
+
+  .speakers a.card:hover {
+    .card-img-top {
+      border-radius: 30%;
+    }
+
+    h5 {
+      text-decoration: underline;
     }
   }
 
