@@ -7,7 +7,7 @@ from wagtail.models import Page
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.images.blocks import ImageChooserBlock
 
-from .other import ProgrammeDay, Speaker
+from .other import ProgrammeDay
 
 
 class NewsPage(Page):
@@ -20,11 +20,9 @@ class NewsPage(Page):
         related_name="+"
     )
     body = RichTextField()
-    speaker = models.ForeignKey(Speaker, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
 
     content_panels = Page.content_panels + [
         FieldPanel("short_description"),
-        FieldPanel("speaker"),
         FieldPanel("image"),
         FieldPanel("body"),
     ]
@@ -38,6 +36,33 @@ class NewsListPage(Page):
         context["news"] = NewsPage.objects.live().child_of(self).order_by("-first_published_at")
 
         return context
+
+
+class Speaker(models.Model):
+    name = models.TextField()
+    short_description = models.TextField(blank=True)
+    image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name="+"
+    )
+    social_media = StreamField([
+        ("instagram", blocks.URLBlock()),
+        ("mastodon", blocks.URLBlock()),
+        ("twitter", blocks.URLBlock()),
+        ("facebook", blocks.URLBlock()),
+        ("website", blocks.URLBlock()),
+        ("podcast", blocks.URLBlock()),
+        ("linkedin", blocks.URLBlock()),
+        ("youtube", blocks.URLBlock()),
+        ("tiktok", blocks.URLBlock()),
+    ], use_json_field=True, blank=True, max_num=3)
+    exposed = models.BooleanField(default=False)
+    news_page = models.ForeignKey(NewsPage, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+
+    def __str__(self):
+        return self.name
 
 
 class HomePage(Page):
