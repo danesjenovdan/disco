@@ -41,7 +41,7 @@ spec:
               memory: 400Mi
               cpu: 100m
             limits:
-              memory: 500Mi
+              memory: 400Mi
               cpu: 100m
         - name: migrate
           image: disco
@@ -97,7 +97,7 @@ spec:
               memory: 400Mi
               cpu: 100m
             limits:
-              memory: 400Mi
+              memory: 500Mi
               cpu: 100m
         - name: disco-nginx
           image: nginx:alpine
