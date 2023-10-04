@@ -96,7 +96,7 @@ class NewHomePage(Page):
     ], use_json_field=True)
     # organized by
     organized_by_title = models.TextField()
-    organized_by_text = models.TextField()
+    organized_by_text = RichTextField()
     # sponsored by
     sponsored_by = StreamField([
         ("logo", blocks.StructBlock([

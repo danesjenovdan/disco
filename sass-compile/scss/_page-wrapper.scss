@@ -829,6 +829,14 @@ hr.divider {
           margin-bottom: 0;
         }
       }
+
+      a {
+        color: $disco-black;
+
+        &:hover {
+          color: $disco-pink;
+        }
+      }
     }
   }
 
