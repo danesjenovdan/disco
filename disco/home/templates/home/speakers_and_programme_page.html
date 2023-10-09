@@ -101,13 +101,10 @@
               <p class="mb-0">{{ day.description }}</p>
             </div>
             {% if day.timeslots %}
-            <div class="p-4">
-              <h4 class="text-center mb-0">Confirmed sessions</h4>
-            </div>
             {% for timeslot in day.timeslots %}
             <div class="d-flex timeslot">
               <div class="programme-day-column p-4 line-right">
-                <h5 class="mb-0">{{ timeslot.value.time }}</h5>
+                <h5 class="mb-0 timeslot-time">{{ timeslot.value.time }}</h5>
               </div>
               <div class="programme-day-column p-4">
                 {% for panel in timeslot.value.panels_list %}
@@ -115,8 +112,8 @@
                   {{ panel.value.text|richtext }}
                   {% for speaker in panel.value.speakers %}
                   <div class="panel-speaker">
-                    <div class="d-flex align-items-end mb-1">
-                      {% image speaker.image fill-24x24 class="me-2" %}
+                    <div class="d-flex align-items-start mb-1">
+                      {% image speaker.image fill-36x36 class="me-2" %}
                       <h5 class="mb-0">
                         {% if speaker.link %}
                         <a href="{% pageurl speaker.link %}">{{ speaker.name }}</a>
