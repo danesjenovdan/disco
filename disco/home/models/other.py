@@ -5,6 +5,7 @@ from django.conf import settings
 
 from wagtail import blocks
 from wagtail.fields import StreamField
+from wagtail.images.blocks import ImageChooserBlock
 from django_countries.fields import CountryField
 
 from home.mautic_api import MauticApi
@@ -29,9 +30,15 @@ class ProgrammeDay(models.Model):
             ("time", blocks.CharBlock(required=False)),
             ("panels_list", blocks.StreamBlock([
                 ("panel", blocks.StructBlock([
-                    ("name", blocks.CharBlock()),
-                    ("speaker_page", blocks.PageChooserBlock(page_type="home.NewsPage", required=False)),
-                    ("description", blocks.TextBlock(required=False)),
+                    ("text", blocks.RichTextBlock(required=False)),
+                    ("speakers", blocks.ListBlock(blocks.StructBlock([
+                        ("name", blocks.CharBlock(required=False)),
+                        ("image", ImageChooserBlock(required=False)), 
+                        ("link", blocks.PageChooserBlock(required=False)),
+                        ("organisation", blocks.CharBlock(required=False)),
+                        ("title", blocks.CharBlock(required=False)),
+                        ("description", blocks.RichTextBlock(required=False))
+                    ])))                    
                 ]))
             ], use_json_field=True))
         ]))

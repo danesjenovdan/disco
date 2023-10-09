@@ -556,7 +556,7 @@ hr.divider {
         border-right: 1px solid $disco-white;
       }
 
-      & > div:not(:last-child) {
+      & > div:not(:last-child):not(.panel) {
         border-bottom: 1px solid $disco-white;
       }
 
@@ -619,16 +619,33 @@ hr.divider {
     }
 
     .panel {
-      border-bottom: none !important;
-      padding: 20px;
-      border-radius: 25px;
+      border-bottom: none;
 
-      &:nth-child(odd) {
-        background-color: $disco-pink;
+      &:not(:first-child) {
+        padding-top: 20px;
       }
 
-      &:nth-child(even) {
-        background-color: $disco-bright-pink;
+      &:not(:last-child) {
+        padding-bottom: 20px;
+        border-bottom: 2px $disco-pink dotted;
+      }
+
+      h2, h3, h4 {
+        color: $disco-pink;
+        line-height: 1.125;
+        margin-top: 0;
+      }
+
+      h2 {
+        font-size: 32px;
+      }
+
+      h3 {
+        font-size: 28px;
+      }
+
+      h4 {
+        font-size: 24px;
       }
 
       h5 {
@@ -642,15 +659,59 @@ hr.divider {
       }
 
       p {
-        font-size: 14px;
-        line-height: 18px;
-        margin-bottom: 0;
+        font-size: 18px;
+        line-height: 22px;
+        // margin-bottom: 0;
       }
 
       h5,
-      h6 a,
+      h5 a,
+      h6,
       p {
-        color: $disco-black;
+        color: $disco-white;
+      }
+
+      h5, h5 a {
+        font-size: 18px;
+      }
+
+      h5 {
+        a {
+          text-decoration: underline;
+        }
+
+        span {
+          color: $disco-grey;
+        }
+      }
+
+      .panel-speaker {
+        padding-left: 20px;
+        position: relative;
+
+        &::before {
+          content: "...";
+          position: absolute;
+          color: $disco-pink;
+          left: 0;
+          top: -2px;
+          width: 20px;
+        }
+
+        .description {
+          h6 {
+            font-size: 14px;
+            line-height: 22px;
+            margin-bottom: 0;
+          }
+
+          p {
+            font-size: 14px;
+            line-height: 18px;
+            color: $disco-grey;
+            margin-bottom: 4px;
+          }
+        }
       }
     }
   }
