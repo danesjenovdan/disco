@@ -101,9 +101,6 @@
               <p class="mb-0">{{ day.description }}</p>
             </div>
             {% if day.timeslots %}
-            <div class="p-4">
-              <h4 class="text-center mb-0">Confirmed sessions</h4>
-            </div>
             {% for timeslot in day.timeslots %}
             <div class="d-flex timeslot">
               <div class="programme-day-column p-4 line-right">
