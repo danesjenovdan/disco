@@ -8,4 +8,4 @@ resources:
 images:
   - name: disco
     newName: rg.fr-par.scw.cloud/djnd/disco
-    newTag: 'abed75ecb789b4a494da1e187ab74969282fe696'
+    newTag: '3173576bb3345ab632ce902d34dba8cca1bf86a6'
