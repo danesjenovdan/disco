@@ -106,21 +106,34 @@
             </div>
             {% for timeslot in day.timeslots %}
             <div class="d-flex timeslot">
-              <div class="programme-day-column p-3">
+              <div class="programme-day-column p-4 line-right">
                 <h5 class="mb-0">{{ timeslot.value.time }}</h5>
               </div>
-              <div class="programme-day-column">
+              <div class="programme-day-column p-4">
                 {% for panel in timeslot.value.panels_list %}
-                <div class="panel m-3">
-                  <h5>{{ panel.value.name }}</h5>
-                  {% if panel.value.speaker_page %}
-                  <h6>
-                    <a href="{% pageurl panel.value.speaker_page %}">{{ panel.value.speaker_page }}</a>
-                  </h6>
-                  {% endif %}
-                  {% if panel.value.description %}
-                  <p>{{ panel.value.description }}</p>
-                  {% endif %}
+                <div class="panel">
+                  {{ panel.value.text|richtext }}
+                  {% for speaker in panel.value.speakers %}
+                  <div class="panel-speaker">
+                    <div class="d-flex align-items-center mb-1">
+                      {% image speaker.image fill-24x24 class="me-2" %}
+                      <h5 class="mb-0">
+                        {% if speaker.link %}
+                        <a href="{% pageurl speaker.link %}">{{ speaker.name }}</a>
+                        {% else %}
+                        {{ speaker.name }}
+                        {% endif %}
+                        {% if speaker.organisation %}
+                        <span>({{ speaker.organisation }})</span>
+                        {% endif %}
+                      </h5>
+                    </div>
+                    <div class="description">
+                      <h6>{{ speaker.title }}</h6>
+                      {{ speaker.description|richtext }}
+                    </div>
+                  </div>
+                  {% endfor %}
                 </div>
                 {% endfor %}
               </div>
