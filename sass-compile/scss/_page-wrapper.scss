@@ -585,6 +585,10 @@ hr.divider {
       .programme-day-column:last-child {
         flex-basis: 80%;
       }
+
+      .timeslot-time {
+        color: $disco-grey;
+      }
     }
 
     .programme-day-column-row {
@@ -650,7 +654,7 @@ hr.divider {
 
       h5 {
         font-size: 24px;
-        line-height: 30px;
+        line-height: 22px;
       }
 
       h6 a {
