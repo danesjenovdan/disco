@@ -698,6 +698,10 @@ hr.divider {
           width: 20px;
         }
 
+        &:not(:last-child) {
+          padding-bottom: 16px;
+        }
+
         .description {
           h6 {
             font-size: 14px;
