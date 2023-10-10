@@ -59,9 +59,9 @@ class Registered(models.Model):
     country = CountryField(blank_label="")
     has_paid = models.BooleanField(default=False)
     registration_fee = models.IntegerField(null=True, blank=True, choices=[
-        (50, "€50 plus VAT (€61 total)"),
-        (25, "€25 plus VAT or €30,50 in total (for those unable to afford the standard fee)"),
-        (75, "€75 plus VAT or €91,50 in total (for those who want to support participants with subsidised fee)")
+        (50, "€50 plus VAT (€54.75 total)"),
+        (25, "€25 plus VAT or €27.37 in total (for those unable to afford the standard fee)"),
+        (75, "€75 plus VAT or €82.13 in total (for those who want to support participants with subsidised fee)")
     ])
     mautic_id = models.IntegerField(null=True, blank=True)
 
