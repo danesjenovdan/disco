@@ -183,7 +183,11 @@
                   </svg>
                   <div class="d-flex flex-column">
                     <span>Location</span>
+                    {% if day.location_url %}
+                    <a href="{{ day.location_url }}" target="_blank" class="location-url"><span>{{ day.location }}</span></a>
+                    {% else %}
                     <span>{{ day.location }}</span>
+                    {% endif %}
                   </div>
                 </div>
                 <div class="d-flex flex-column">

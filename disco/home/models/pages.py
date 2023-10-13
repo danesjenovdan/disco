@@ -158,7 +158,7 @@ class NewHomePage(Page):
         context = super().get_context(request, *args, **kwargs)
 
         context["programme"] = ProgrammeDay.objects.all().order_by("date")
-        context["speakers"] = Speaker.objects.filter(exposed=True)
+        context["speakers"] = Speaker.objects.filter(exposed=True).order_by('?')
 
         try:
             news_list = NewsListPage.objects.first()
