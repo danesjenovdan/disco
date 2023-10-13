@@ -196,7 +196,7 @@ class SpeakersAndProgrammePage(Page):
         context = super().get_context(request, *args, **kwargs)
 
         context["programme"] = ProgrammeDay.objects.all().order_by("date")
-        context["speakers"] = Speaker.objects.all()
+        context["speakers"] = Speaker.objects.all().order_by('?')
         context["show_speakers"] = self.show_speakers
 
         return context
