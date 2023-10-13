@@ -23,6 +23,12 @@
     .addTo(map)
     .bindPopup("Dijaški dom Tabor: Kotnikova ulica 4");
 
+  var bbHotel = L.marker([46.053702381734055, 14.514915780274624], {
+    icon: myIcon,
+  })
+    .addTo(map)
+    .bindPopup('B&B Hotel Ljubljana Park: Tabor 9, 1000 Ljubljana');
+
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
     attribution:

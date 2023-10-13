@@ -16,6 +16,7 @@ mautic_api = MauticApi()
 class ProgrammeDay(models.Model):
     title = models.TextField()
     location = models.TextField()
+    location_url = models.URLField(blank=True)
     available_for = models.TextField()
     image = models.ForeignKey(
         "wagtailimages.Image",
@@ -60,7 +61,7 @@ class Registered(models.Model):
     has_paid = models.BooleanField(default=False)
     registration_fee = models.IntegerField(null=True, blank=True, choices=[
         (50, "€50 plus VAT (€54.75 total)"),
-        (25, "€25 plus VAT or €27.37 in total (for those unable to afford the standard fee)"),
+        (25, "€25 plus VAT or €27.38 in total (for those unable to afford the standard fee)"),
         (75, "€75 plus VAT or €82.13 in total (for those who want to support participants with subsidised fee)")
     ])
     mautic_id = models.IntegerField(null=True, blank=True)
