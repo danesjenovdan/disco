@@ -1,0 +1,63 @@
+{% extends "new_base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}bg-black{% endblock %}
+
+{% block header %}
+  {% include 'home/partials/new_header.html' %}
+{% endblock header %}
+
+{% block content %}
+
+{% if page.show_speakers %}
+<div class="speakers" id="speakers">
+  <div class="spinning-banner heading-banner">
+    <div>
+      <h2 class="spinning-content">Speakers –</h2>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row my-7">
+      {% for speaker in speakers %}
+      <div class="col-12 col-md-6 col-lg-3 mb-4">
+        {% if speaker.news_page %}
+        <a href="{% pageurl speaker.news_page %}" class="card">
+          {% image speaker.image original class="card-img-top" %}
+          <div class="card-body px-0">
+            <h5 class="card-title">
+              {{ speaker.name }}
+            </h5>
+            <p class="card-text">{{ speaker.short_description }}</p>
+          </div>
+        </a>
+        {% else %}
+        <div class="card">
+          {% image speaker.image original class="card-img-top" %}
+          <div class="card-body px-0">
+            <h5 class="card-title">
+              {{ speaker.name }}
+            </h5>
+            <p class="card-text">{{ speaker.short_description }}</p>
+          </div>
+        </div>
+        {% endif %}
+        <hr />
+        <div class="social-media">
+          {% for sm in speaker.social_media %}
+          <a href="{{ sm.value}}" target="_blank" class="d-flex align-items-center justify-content-center">
+            {% include 'home/partials/social_media_icon.html' with icon_type=sm.block_type only %}
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<div class="newsletter bg-grid">
+  {% include 'home/partials/newsletter.html' %}
+</div>
+
+{% endblock content %}

@@ -196,6 +196,8 @@ hr.divider {
   text-decoration: none;
   color: $disco-white;
   border-bottom: 1px solid $disco-white;
+  z-index: 10;
+  position: relative;
 
   span {
     font-size: 14px;
@@ -1130,6 +1132,17 @@ hr.divider {
       width: 19px;
       height: 14px;
       margin-left: 1rem;
+    }
+  }
+}
+
+.programme-day-page {
+  h1 {
+    font-size: 72px;
+    color: $disco-white;
+
+    @include media-breakpoint-down(sm) {
+      font-size: 50px;
     }
   }
 }
