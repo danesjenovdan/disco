@@ -1,7 +1,7 @@
 {% extends "new_base.html" %}
 {% load static wagtailcore_tags wagtailimages_tags %}
 
-{% block body_class %}bg-black{% endblock %}
+{% block body_class %}bg-black programme-day-page{% endblock %}
 
 {% block header %}
   {% include 'home/partials/new_header.html' %}
@@ -9,73 +9,27 @@
 
 {% block content %}
 
-{% if show_speakers %}
-<div class="speakers" id="speakers">
-  <div class="spinning-banner heading-banner">
-    <div>
-      <h2 class="spinning-content">Speakers –</h2>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row my-7">
-      {% for speaker in speakers %}
-      <div class="col-12 col-md-6 col-lg-3 mb-4">
-        {% if speaker.news_page %}
-        <a href="{% pageurl speaker.news_page %}" class="card">
-          {% image speaker.image original class="card-img-top" %}
-          <div class="card-body px-0">
-            <h5 class="card-title">
-              {{ speaker.name }}
-            </h5>
-            <p class="card-text">{{ speaker.short_description }}</p>
-          </div>
-        </a>
-        {% else %}
-        <div class="card">
-          {% image speaker.image original class="card-img-top" %}
-          <div class="card-body px-0">
-            <h5 class="card-title">
-              {{ speaker.name }}
-            </h5>
-            <p class="card-text">{{ speaker.short_description }}</p>
-          </div>
-        </div>
-        {% endif %}
-        <hr />
-        <div class="social-media">
-          {% for sm in speaker.social_media %}
-          <a href="{{ sm.value}}" target="_blank" class="d-flex align-items-center justify-content-center">
-            {% include 'home/partials/social_media_icon.html' with icon_type=sm.block_type only %}
-          </a>
-          {% endfor %}
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-</div>
-{% endif %}
-
 <div class="programme" id="programme">
-  <div class="spinning-banner heading-banner">
-    <div>
-      <h2 class="spinning-content">Programme –</h2>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1>{{ page.title }}</h1>
+      </div>
     </div>
   </div>
   <div class="container">
     <div class="globe-bg globe--left"></div>
     <div class="globe-bg globe--right"></div>
-    {% for day in programme %}
     <div class="row my-7">
       <div class="col-12">
         <div class="programme-day d-flex">
-          <a name="{{ day.title|slugify }}"></a>
+          <a name="{{ page.programme_day.title|slugify }}"></a>
           <div class="programme-day-date">
-            {{ day.date|date:"j. n." }}
+            {{ page.programme_day.date|date:"j. n." }}
           </div>
           <div class="programme-day-column line-right">
             <div>
-              <h3 class="text-center">{{ day.title }}</h3>
+              <h3 class="text-center">{{ page.programme_day.title }}</h3>
             </div>
             <div class="programme-day-column-row d-flex">
               <div class="d-flex align-items-center">
@@ -84,29 +38,29 @@
                 </svg>
                 <div class="d-flex flex-column">
                   <span>Location</span>
-                  {% if day.location_url %}
-                  <a href="{{ day.location_url }}" target="_blank" class="location-url"><span>{{ day.location }}</span></a>
+                  {% if page.programme_day.location_url %}
+                  <a href="{{ page.programme_day.location_url }}" target="_blank" class="location-url"><span>{{ page.programme_day.location }}</span></a>
                   {% else %}
-                  <span>{{ day.location }}</span>
+                  <span>{{ page.programme_day.location }}</span>
                   {% endif %}
                 </div>
               </div>
               <div class="d-flex flex-column">
                 <span>Open to</span>
-                <span>{{ day.available_for }}</span>
+                <span>{{ page.programme_day.available_for }}</span>
               </div>
             </div>
             <div class="p-7 text-center">
-              {% image day.image original class="img-fluid" %}
+              {% image page.programme_day.image original class="img-fluid" %}
             </div>
           </div>
           <div class="programme-day-column d-flex flex-column">
             <div class="p-6 flex-grow-1 d-flex align-items-center">
-              <p class="mb-0">{{ day.description }}</p>
+              <p class="mb-0">{{ page.programme_day.description }}</p>
             </div>
-            {% if day.timeslots %}
-            {% for timeslot in day.timeslots %}
-            <div class="d-flex timeslot">
+            {% if page.programme_day.timeslots %}
+            {% for timeslot in page.programme_day.timeslots %}
+            <div class="d-md-flex timeslot">
               <div class="programme-day-column p-4 line-right">
                 <h5 class="mb-0 timeslot-time">{{ timeslot.value.time }}</h5>
               </div>
@@ -143,10 +97,8 @@
             {% endif %}
           </div>
         </div>
-
       </div>
     </div>
-    {% endfor %}
   </div>
 </div>
 

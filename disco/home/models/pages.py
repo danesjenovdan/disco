@@ -168,9 +168,14 @@ class NewHomePage(Page):
             exposed_news = None
 
         try:
-            speakers_and_programme_page = SpeakersAndProgrammePage.objects.first()
+            speakers_page = SpeakersPage.objects.first()
         except:
-            speakers_and_programme_page = None
+            speakers_page = None
+
+        try:
+            programme_page = ProgrammePage.objects.first()
+        except:
+            programme_page = None
 
         try:
             location_page = LocationPage.objects.first()
@@ -179,13 +184,14 @@ class NewHomePage(Page):
 
         context["news_list"] = news_list
         context["exposed_news"] = exposed_news
-        context["speakers_and_programme_page"] = speakers_and_programme_page
+        context["speakers_page"] = speakers_page
+        context["programme_page"] = programme_page
         context["location_page"] = location_page
 
         return context
 
 
-class SpeakersAndProgrammePage(Page):
+class SpeakersPage(Page):
     show_speakers = models.BooleanField(default=False)
 
     content_panels = Page.content_panels + [
@@ -194,10 +200,27 @@ class SpeakersAndProgrammePage(Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-
-        context["programme"] = ProgrammeDay.objects.all().order_by("date")
         context["speakers"] = Speaker.objects.all().order_by('?')
-        context["show_speakers"] = self.show_speakers
+        return context
+    
+
+class ProgrammeDayPage(Page):
+    programme_day = models.ForeignKey(ProgrammeDay, on_delete=models.PROTECT, related_name="+")
+
+    content_panels = Page.content_panels + [
+        FieldPanel("programme_day"),
+    ]
+
+
+class ProgrammePage(Page):
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        programme = ProgrammeDay.objects.all().order_by("date")
+        for day in programme:
+            programme_day_page = ProgrammeDayPage.objects.get(programme_day=day)
+            day.programme_day_page = programme_day_page
+
+        context["programme"] = programme
 
         return context
 

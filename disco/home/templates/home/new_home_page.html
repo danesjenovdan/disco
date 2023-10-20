@@ -143,10 +143,10 @@
         </div>
         {% endif %}
       </div>
-      {% if speakers_and_programme_page %}
+      {% if speakers_page %}
       <div class="row">
         <div class="col-12">
-          <a href="{% pageurl speakers_and_programme_page %}" class="link-to-site"><span>Explore our speaker lineup</span></a>
+          <a href="{% pageurl speakers_page %}" class="link-to-site"><span>Explore our speaker lineup</span></a>
         </div>
       </div>
       {% endif %}
@@ -203,9 +203,9 @@
               <div class="p-6 flex-grow-1 d-flex align-items-center">
                 <p class="mb-0">{{ day.description }}</p>
               </div>
-              {% if speakers_and_programme_page %}
+              {% if programme_page %}
               <div class="p-3 text-center">
-                <a href="{% pageurl speakers_and_programme_page %}#{{ day.title|slugify }}" class="btn btn-primary">
+                <a href="{% pageurl programme_page %}#{{ day.title|slugify }}" class="btn btn-primary">
                   Details
                   <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 19 14">
                     <path d="M10.85 12.99 11.87 14 19 7l-7.13-7-1.02 1.01 5.36 5.27H0v1.44h16.21l-5.36 5.27Z"/>
@@ -219,6 +219,13 @@
         </div>
       </div>
       {% endfor %}
+      {% if programme_page %}
+        <div class="row">
+          <div class="col-12">
+            <a href="{% pageurl programme_page %}" class="link-to-site"><span>See programme</span></a>
+          </div>
+        </div>
+      {% endif %}
     </div>
   </div>
 </div>
