@@ -104,6 +104,9 @@ class NewHomePage(Page):
             ("link", blocks.URLBlock(required=False))
         ]))
     ], use_json_field=True, blank=True, null=True)
+    # stream link
+    stream_link = models.URLField(blank=True, null=True)
+    stream_text = models.TextField(blank=True)
 
     content_panels = Page.content_panels + [
         MultiFieldPanel(
@@ -152,6 +155,13 @@ class NewHomePage(Page):
             ],
             heading="Sponsored by"
         ),
+        MultiFieldPanel(
+            [
+                FieldPanel("stream_link"),
+                FieldPanel("stream_text"),
+            ],
+            heading="Livestream"
+        )   
     ]
 
     def get_context(self, request, *args, **kwargs):
