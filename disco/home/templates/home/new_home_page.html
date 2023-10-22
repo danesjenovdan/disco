@@ -10,6 +10,33 @@
 {% block content %}
 
 <div class="container hero mb-5 pb-4">
+  {% if page.stream_link %}
+  <div class="row stream-link">
+    <div class="col-12 col-xxl-4 d-flex flex-column">
+      <h1>
+        DISCO Slovenia
+      </h1>
+      <h2 class="mb-5">
+        Digital Sovereignty <br />Conference
+      </h2>
+      <h2>
+        24–26 October 2023 <br />Ljubljana, Slovenia
+      </h2>
+      <div class="livestream">
+        {{ page.stream_text }}
+      </div>
+      <h3 class="mt-4 mt-xxl-0">
+        {{ page.subtitle }}
+      </h3>
+      <p>
+        {{ page.intro_text }}
+      </p>
+    </div>
+    <div class="col-12 col-xxl-8 py-3 pt-xxl-5">
+      <iframe width="100%" height="100%" src="{{ page.stream_link }}" title="DISCO Livestream" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </div>
+  {% else %}
   <div class="row">
     <div class="col-12 col-lg-6">
       <h1>
@@ -31,8 +58,10 @@
       </p>
     </div>
   </div>
+  {% endif %}
 </div>
 
+{% if not page.stream_link %}
 <div class="container">
   <div class="row">
     <div class="col">
@@ -50,6 +79,7 @@
     </div>
   </div>
 </div>
+{% endif %}
 
 {% include 'home/partials/register_banner.html' %}
 
