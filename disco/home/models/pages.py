@@ -157,7 +157,13 @@ class NewHomePage(Page):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
 
-        context["programme"] = ProgrammeDay.objects.all().order_by("date")
+        # context["programme"] = ProgrammeDay.objects.all().order_by("date")
+        programme = ProgrammeDay.objects.all().order_by("date")
+        for day in programme:
+            programme_day_page = ProgrammeDayPage.objects.get(programme_day=day)
+            day.programme_day_page = programme_day_page
+
+        context["programme"] = programme
         context["speakers"] = Speaker.objects.filter(exposed=True).order_by('?')
 
         try:
