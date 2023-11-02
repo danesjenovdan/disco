@@ -10,6 +10,7 @@
 {% block content %}
 
 <div class="container news-page">
+  {% if page.image %}
   <div class="row my-5">
     <div class="col-12 col-lg-6 py-6 p-lg-6">
       {% image page.image original class="img-fluid" %}
@@ -19,12 +20,42 @@
       <p class="subtitle">{{ page.short_description }}</p>
     </div>
   </div>
+  {% else %}
+  <div class="row my-5 justify-content-center">
+    <div class="col-12 col-lg-8 py-6 d-flex flex-column justify-content-center">
+      <h1>{{ page.title }}</h1>
+      <p class="subtitle">{{ page.short_description }}</p>
+    </div>
+  </div>
+  {% endif %}
 
+  {% if page.body %}
   <div class="row justify-content-center">
     <div class="col-12 col-lg-8 rich-text">
       {{ page.body|richtext }}
     </div>
   </div>
+  {% endif %}
+
+  {% if page.gallery_images %}
+  <div class="row my-7 justify-content-center pswp-gallery pswp-gallery--single-column" id="gallery--getting-started">
+    <div class="col-12 col-lg-8">
+      <div class="row">
+        {% for image in page.gallery_images %}
+        <div class="col-12 col-md-6 col-lg-4 my-3">
+          {% image image.value original  as gallery_image %}
+          <a href="{{ gallery_image.url }}" 
+              data-pswp-width="{{ gallery_image.width }}" 
+              data-pswp-height="{{ gallery_image.height }}" 
+              target="_blank">
+              <img src="{{ gallery_image.url }}" width="{{ gallery_image.width }}" height="{{ gallery_image.height }}" alt="{{ gallery_image.alt }}" class="img-fluid" />
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
 
   <div class="row my-7 justify-content-center">
     <div class="col-12 col-lg-8">
@@ -36,5 +67,24 @@
 <div class="newsletter bg-grid">
   {% include 'home/partials/newsletter.html' %}
 </div>
+
+{% if page.gallery_images %}
+<script type="module">
+// Include Lightbox 
+import PhotoSwipeLightbox from "{% static '/photoswipe/photoswipe-lightbox.esm.min.js' %}";
+
+const lightbox = new PhotoSwipeLightbox({
+  // may select multiple "galleries"
+  gallery: '#gallery--getting-started',
+
+  // Elements within gallery (slides)
+  children: 'a',
+
+  // setup PhotoSwipe Core dynamic import
+  pswpModule: () => import("{% static '/photoswipe/photoswipe.esm.min.js' %}")
+});
+lightbox.init();
+</script>
+{% endif %}
 
 {% endblock content %}
