@@ -19,12 +19,16 @@ class NewsPage(Page):
         on_delete=models.SET_NULL,
         related_name="+"
     )
-    body = RichTextField()
+    body = RichTextField(blank=True, null=True)
+    gallery_images = StreamField([
+        ("image", ImageChooserBlock()),
+    ], use_json_field=True, blank=True)
 
     content_panels = Page.content_panels + [
         FieldPanel("short_description"),
         FieldPanel("image"),
         FieldPanel("body"),
+        FieldPanel("gallery_images"),
     ]
 
 
