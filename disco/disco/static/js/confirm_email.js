@@ -15,7 +15,7 @@
     const segment_id = 29;
 
     const apiSearchParams = new URLSearchParams({ email, token });
-    const url = `https://podpri.lb.djnd.si/api/segments/${segment_id}/contact/?${apiSearchParams}`;
+    const url = `https://podpri.djnd.si/api/segments/${segment_id}/contact/?${apiSearchParams}`;
 
     try {
       const response = await fetch(url, { method: "POST" });
