@@ -14,7 +14,7 @@
 
       try {
         const response = await fetch(
-          "https://podpri.lb.djnd.si/api/subscribe/",
+          "https://podpri.djnd.si/api/subscribe/",
           {
             method: "POST",
             headers: {
