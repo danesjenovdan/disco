@@ -3,11 +3,11 @@
 # See Dockerfile in repository root for production and k8s use
 # ---------------------------------- WARNING ----------------------------------
 
-FROM node:18-alpine
+FROM node:26-alpine
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
-RUN yarn
+COPY package.json package-lock.json ./
+RUN npm ci
 
-CMD yarn css
+CMD ["npm", "run", "css"]

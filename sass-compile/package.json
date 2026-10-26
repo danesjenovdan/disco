@@ -7,7 +7,7 @@
     "css-compile": "sass --style expanded --source-map --embed-sources --no-error-css --load-path=node_modules scss/:static/css/",
     "css-prefix": "postcss --replace static/css/bundle.css --use autoprefixer --map",
     "css": "npm-run-all css-compile css-prefix",
-    "watch": "nodemon -e scss -x \"yarn css\""
+    "watch": "nodemon -e scss -x \"npm run css\""
   },
   "dependencies": {
     "bootstrap": "^5.2.3"

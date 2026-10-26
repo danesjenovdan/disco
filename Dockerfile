@@ -6,16 +6,16 @@
 # ---
 # build scss in separate image
 # ---
-FROM node:18-alpine as sass-compile
+FROM node:26-alpine as sass-compile
 
 WORKDIR /app
 
-COPY ./sass-compile/package.json ./sass-compile/yarn.lock ./
-RUN yarn
+COPY ./sass-compile/package.json ./sass-compile/package-lock.json ./
+RUN npm ci
 
 COPY ./sass-compile/scss ./scss
 
-RUN yarn css
+RUN npm run css
 
 # ---
 # wagtail image

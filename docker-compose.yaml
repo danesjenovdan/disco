@@ -26,7 +26,7 @@ services:
   sass-compile:
     build: ./sass-compile
     working_dir: /app
-    command: yarn watch
+    command: npm run watch
     volumes:
       - ./sass-compile/scss:/app/scss:delegated,rw
       - ./disco/disco/static:/app/static:delegated,rw
