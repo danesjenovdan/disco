@@ -1,4 +1,4 @@
-from wagtail.contrib.modeladmin.options import (
+from wagtail_modeladmin.options import (
     ModelAdmin, modeladmin_register)
 from .models import Speaker, ProgrammeDay, Registered, Individual, Organisation, IndividualByOrganisation, RegisteredSpeaker
 

@@ -14,8 +14,8 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "HOST": os.getenv("DJANGO_DATABASE_HOST", "db"),
         "PORT": os.getenv("DJANGO_DATABASE_PORT", "5432"),
-        "NAME": os.getenv("DJANGO_DATABASE_NAME", "wagtail"),
-        "USER": os.getenv("DJANGO_DATABASE_USER", "wagtail"),
+        "NAME": os.getenv("DJANGO_DATABASE_NAME", "disco"),
+        "USER": os.getenv("DJANGO_DATABASE_USER", "disco"),
         "PASSWORD": os.getenv("DJANGO_DATABASE_PASSWORD", "changeme"),
     }
 }

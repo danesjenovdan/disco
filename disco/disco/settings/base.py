@@ -29,7 +29,7 @@ DEFAULT_LOGGING["handlers"]["console"]["filters"] = []
 INSTALLED_APPS = [
     "home",
     "wagtail.contrib.forms",
-    "wagtail.contrib.modeladmin",
+    "wagtail_modeladmin",
     "wagtail.contrib.redirects",
     "wagtail.contrib.styleguide",
     "wagtail.contrib.settings",
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.postgres",
     "django_countries",
 ]
 
