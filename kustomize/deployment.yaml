@@ -38,11 +38,11 @@ spec:
                 name: disco-secrets
           resources:
             requests:
-              memory: 400Mi
-              cpu: 100m
+              memory: 500Mi
+              cpu: 500m
             limits:
-              memory: 400Mi
-              cpu: 100m
+              memory: 500Mi
+              cpu: 500m
         - name: migrate
           image: disco
           volumeMounts:
@@ -60,11 +60,11 @@ spec:
                 name: disco-secrets
           resources:
             requests:
-              memory: 400Mi
-              cpu: 100m
+              memory: 500Mi
+              cpu: 500m
             limits:
-              memory: 400Mi
-              cpu: 100m
+              memory: 500Mi
+              cpu: 500m
       containers:
         - name: disco
           image: disco
@@ -95,11 +95,11 @@ spec:
             - containerPort: 8000
           resources:
             requests:
-              memory: 200Mi
-              cpu: 50m
+              memory: 500Mi
+              cpu: 500m
             limits:
-              memory: 200Mi
-              cpu: 50m
+              memory: 500Mi
+              cpu: 500m
         - name: disco-nginx
           image: nginx:alpine
           imagePullPolicy: Always
