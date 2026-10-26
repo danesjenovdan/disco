@@ -102,6 +102,7 @@ spec:
               cpu: 50m
         - name: disco-nginx
           image: nginx:alpine
+          imagePullPolicy: Always
           volumeMounts:
             - name: disco-persistent-storage
               mountPath: /usr/share/nginx/html

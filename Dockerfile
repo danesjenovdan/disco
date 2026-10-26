@@ -6,22 +6,22 @@
 # ---
 # build scss in separate image
 # ---
-FROM node:18-alpine as sass-compile
+FROM node:26-alpine as sass-compile
 
 WORKDIR /app
 
-COPY ./sass-compile/package.json ./sass-compile/yarn.lock ./
-RUN yarn
+COPY ./sass-compile/package.json ./sass-compile/package-lock.json ./
+RUN npm ci
 
 COPY ./sass-compile/scss ./scss
 
-RUN yarn css
+RUN npm run css
 
 # ---
 # wagtail image
 # ---
-# Use an official Python runtime based on Debian 11 "bullseye" as a parent image.
-FROM python:3.11.2-slim-bullseye
+# Use an official Python runtime based on Debian 13 "trixie" as a parent image.
+FROM python:3.14-slim-trixie
 
 # Add user that will be used in the container.
 RUN useradd wagtail
@@ -44,9 +44,6 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
     zlib1g-dev \
     libwebp-dev \
  && rm -rf /var/lib/apt/lists/*
-
-# Install the application server.
-RUN pip install "gunicorn==20.1.0"
 
 # Install the project requirements.
 COPY ./disco/requirements.txt /
